@@ -3,10 +3,16 @@ import BlogGrid from './BlogsGrid';
 function BlogList() {
   return (
     <div className='container blog-container'>
-			<BlogGrid></BlogGrid>
-			<BlogGrid></BlogGrid>
-			<BlogGrid></BlogGrid>
-			<BlogGrid></BlogGrid>
+			<div className="row">
+			<div className="col-md-4"><BlogGrid></BlogGrid></div>
+			<div className="col-md-4"><BlogGrid></BlogGrid></div>
+			<div className="col-md-4"><BlogGrid></BlogGrid></div>
+			<div className="col-md-4"><BlogGrid></BlogGrid></div>
+			<div className="col-md-4"><BlogGrid></BlogGrid></div>
+			<div className="col-md-4"><BlogGrid></BlogGrid></div>
+			</div>
+
+
 		</div>
   );
 }
