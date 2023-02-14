@@ -16,6 +16,7 @@ body {
   transition: 0.4 ease;
 }
 
+/* Image for summer*/
 .app.warm {
   background-image: url('./assets/hot.jpg');
 }
