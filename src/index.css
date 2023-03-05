@@ -119,6 +119,10 @@ main {
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
 
+.feels-like{
+  color: #fff;
+font-size: 48px;
+}
 /** BLOG LISTING PAGE **/
 
 .blog-container {
