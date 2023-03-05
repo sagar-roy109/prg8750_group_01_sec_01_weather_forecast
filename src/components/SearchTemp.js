@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function SearchTemp() {
 	const api = {
@@ -6,18 +6,46 @@ function SearchTemp() {
 		base: "https://api.openweathermap.org/data/2.5/"
 	}
 	const [query, setQuery] = useState('');
-  const [weather, setWeather] = useState('');
+    const [weather, setWeather] = useState('');
 
- const search = evt =>{
-  if (evt.key === "Enter") {
-    fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+
+
+  useEffect(()=>{
+	
+	fetch("https://geolocation-db.com/json/a9e48c70-8b22-11ed-8d13-bd165d1291e3")
+	.then(res=>res.json())
+	.then(idDetails =>{
+		
+		 setQuery(idDetails.city);
+
+	})}
+
+	,[])
+
+
+	useEffect(()=>{
+	
+	fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
     .then(res => res.json())
     .then(result => {
 
       setWeather(result);
-      setQuery('');
-      console.log(result);
-    });
+
+	  console.log(result)
+      
+      
+  })}
+
+	, [query])
+
+
+
+
+
+ const search = evt =>{
+  if (evt.key === "Enter") {
+
+    setQuery(evt.target.value);
   }
  }
 
@@ -40,11 +68,11 @@ function SearchTemp() {
 		<main>
 			<div className="search-box">
 				<input
-				type = "text"
+				type = "search"
 				className="search-bar"
 				placeholder="Search"
-				onChange={e => setQuery(e.target.value)}
-				value = {query}
+				//onChange={e => setQuery(e.target.value)}
+				
 				onKeyPress={search}
 				/>
 			</div>
@@ -58,6 +86,7 @@ function SearchTemp() {
 				<div className="temp">
 					{Math.round(weather.main.temp)}℃
 			</div>
+			<p className='feels-like'>Feels Like: {Math.round(weather.main.feels_like)}℃</p>
 
 			</div>
 		</div>
