@@ -17,6 +17,8 @@
 
 body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-image: url('./assets/fall.jpg');
+  background-size: cover;
 }
 
 .app {
@@ -119,9 +121,9 @@ main {
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
 
-.feels-like{
+.feels-like {
   color: #fff;
-font-size: 48px;
+  font-size: 48px;
 }
 /** BLOG LISTING PAGE **/
 
@@ -135,6 +137,25 @@ font-size: 48px;
 
 /** SINGLE POST **/
 
-.single-post{
-	margin-top: 50px;
+.single-post {
+  margin-top: 50px;
+}
+/* Login styles */
+.row {
+  background: white;
+}
+.btn1 {
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  background-color: black;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.btn1:hover {
+  background-color: #fff;
+  border: 1px solid;
+  color: black;
 }
