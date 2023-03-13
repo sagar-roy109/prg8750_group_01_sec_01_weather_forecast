@@ -1,8 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useState } from 'react';
 import registerimg from '../assets/login2.jpg';
 
 function Login() {
+
+	const [inputs, setInputs] = useState({
+		name : '',
+		email: '',
+		password: ''
+	})
   return (
     <section className='Form '>
       <div className='container my-6 mx-6'>
@@ -15,24 +21,18 @@ function Login() {
                 <div className='col-lg-7'>
                   <input
                     type={'text'}
+										value = {inputs.name}
                     placeholder='Enter your First Name'
                     className='form-control my-3 p-2'
                   ></input>
                 </div>
               </div>
-              <div className='form-row'>
-                <div className='col-lg-7'>
-                  <input
-                    type={'text'}
-                    placeholder='Enter your Last Name'
-                    className='form-control my-3 p-2'
-                  ></input>
-                </div>
-              </div>
+
               <div className='form-row'>
                 <div className='col-lg-7'>
                   <input
                     type={'email'}
+										value = {inputs.email}
                     placeholder='Enter your email'
                     className='form-control my-3 p-2'
                   ></input>
@@ -42,6 +42,7 @@ function Login() {
                 <div className='col-lg-7'>
                   <input
                     type={'password'}
+										value = {inputs.password}
                     placeholder='Enter your Password'
                     className='form-control my-3 p-2'
                   ></input>
