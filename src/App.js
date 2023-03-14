@@ -8,6 +8,7 @@ import Test from './pages/Test';
 import Single from './pages/Single';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import DashTest from './pages/DashTest';
 
 const api = {
   key: '42a11fd3bfecf2a59e5faa5d5e9c5f94',
@@ -24,6 +25,7 @@ function App() {
         <Route path='/single-post' element={<Single />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+				<Route path='/user' element={<DashTest />} />
       </Routes>
     </>
   );
