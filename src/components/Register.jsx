@@ -1,13 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import registerimg from '../assets/login2.jpg';
+import registerimg from '../assets/loginfinal.jpg';
 
 function Login() {
   return (
     <section className='Form '>
-      <div className='container my-6 mx-6'>
+      <div className='container my-7 mx-7'>
         <div className='row no-gutters'>
-          <div className='col-lg-7 px-5 pt-4 my-1 mx-6'>
+          <div className='col-lg-5 px-4 py-4'>
+            <img src={registerimg} className='img-fluid' alt='logo'></img>
+          </div>
+          <div className='col-lg-7 px-5 pt-4 '>
             <h1 className='font-weight-bold py-3'> Welcome, Register here!</h1>
             <h2>Register here</h2>
             <form>
