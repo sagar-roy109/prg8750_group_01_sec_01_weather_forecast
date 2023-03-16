@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Sidebar from '../components/Sidebar';
 
 function Add() {
   const handleSubmit = (e) => {
@@ -34,68 +35,70 @@ function Add() {
     });
   };
   return (
-    <Form name='addPostForm' onSubmit={handleSubmit} className='round'>
-      <div className='form-group'>
-        <Form.Label htmlFor='img' className='form-label mt-4'>
-          Image Name
-        </Form.Label>
-        <Form.Control
-          type='text'
-          className='form-control'
-          id='img'
-          name='img'
-          placeholder='Enter Image Name'
-          required
-        />
-      </div>
+    <Sidebar>
+      <Form name='addPostForm' onSubmit={handleSubmit} className='round'>
+        <div className='form-group'>
+          <Form.Label htmlFor='img' className='form-label mt-4'>
+            Image Name
+          </Form.Label>
+          <Form.Control
+            type='text'
+            className='form-control'
+            id='img'
+            name='img'
+            placeholder='Enter Image Name'
+            required
+          />
+        </div>
 
-      <div className='form-group'>
-        <Form.Label htmlFor='dateofpost' className='form-label mt-4'>
-          Date Of Post
-        </Form.Label>
-        <Form.Control
-          type='date'
-          className='form-control'
-          id='dop'
-          name='DOP'
-          required
-        />
-      </div>
-      <div className='form-group'>
-        <Form.Label htmlFor='title' className='form-label mt-4'>
-          Post Title
-        </Form.Label>
-        <Form.Control
-          type='text'
-          className='form-control'
-          id='title'
-          name='title'
-          placeholder='Enter Post title'
-          required
-        />
-      </div>
-      <div className='form-group'>
-        <Form.Label htmlFor='posttype' className='form-label mt-4'>
-          Post Type
-        </Form.Label>
-        <Form.Control
-          type='text'
-          className='form-control'
-          id='posttype'
-          name='posttype'
-          placeholder='Enter Post Type'
-          required
-        />
-      </div>
+        <div className='form-group'>
+          <Form.Label htmlFor='dateofpost' className='form-label mt-4'>
+            Date Of Post
+          </Form.Label>
+          <Form.Control
+            type='date'
+            className='form-control'
+            id='dop'
+            name='DOP'
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <Form.Label htmlFor='title' className='form-label mt-4'>
+            Post Title
+          </Form.Label>
+          <Form.Control
+            type='text'
+            className='form-control'
+            id='title'
+            name='title'
+            placeholder='Enter Post title'
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <Form.Label htmlFor='posttype' className='form-label mt-4'>
+            Post Type
+          </Form.Label>
+          <Form.Control
+            type='text'
+            className='form-control'
+            id='posttype'
+            name='posttype'
+            placeholder='Enter Post Type'
+            required
+          />
+        </div>
 
-      <Button
-        variant='secondary'
-        type='submit'
-        className='btn btn-primary addpost btnadd'
-      >
-        Add Post
-      </Button>
-    </Form>
+        <Button
+          variant='secondary'
+          type='submit'
+          className='btn btn-primary addpost btnadd'
+        >
+          Add Post
+        </Button>
+      </Form>
+    </Sidebar>
   );
 }
 

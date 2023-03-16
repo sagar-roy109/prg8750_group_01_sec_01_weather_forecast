@@ -1,9 +1,12 @@
 import React from 'react';
+import Sidebar from '../components/Sidebar';
 
 function Delete() {
   return (
     <div>
-      <h1>Delete</h1>
+      <Sidebar>
+        <h1>Delete</h1>
+      </Sidebar>
     </div>
   );
 }

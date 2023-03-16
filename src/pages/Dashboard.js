@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PostDirectory from '../pages/PostDirectory';
+import Sidebar from '../components/Sidebar';
 
 function EmployeeTable({ allEmployees }) {
   const [post, setPosts] = useState([]);
@@ -71,7 +72,7 @@ function EmployeeTable({ allEmployees }) {
       </tr>
     ));
   return (
-    <div>
+    <Sidebar>
       <h1 class='emp_data'>Post Details</h1>
       <Table className='table' striped bordered hover variant='dark'>
         <thead>
@@ -85,7 +86,7 @@ function EmployeeTable({ allEmployees }) {
         </thead>
         <tbody>{actionTo()}</tbody>
       </Table>
-    </div>
+    </Sidebar>
   );
 }
 export default EmployeeTable;

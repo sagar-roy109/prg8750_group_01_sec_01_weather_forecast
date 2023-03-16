@@ -32,16 +32,11 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/admin' element={<Admin />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/add' element={<Add />} />
+        <Route path='/update' element={<Update />} />
+        <Route path='/delete' element={<Delete />} />
       </Routes>
-      <Header> </Header>
-      <Sidebar>
-        <Routes>
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/add' element={<Add />} />
-          <Route path='/update' element={<Update />} />
-          <Route path='/delete' element={<Delete />} />
-        </Routes>
-      </Sidebar>
     </>
   );
 }
