@@ -5,65 +5,54 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 function Login() {
 
+	const [fname,setFname] = useState('');
+	const [lname, setLname] =  useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	async function submit(e){
 		e.preventDefault();
-		try{
-			await axios.post("http://localhost:8001/register",{
-				email,password
-			})
-			.then(res=>{
-				if(res.data == "exist"){
-					alert("User Already Exist Please login");
-				}
-				// else if(res.data == "notexist"){
-				// 	history("")
-				// }
-			}
-			)
-			.catch(e=>{
-				alert("Wrong details");
-				console.log(e);
-			})
-		}
-		catch(e){
-			console.log(e);
-		}
+
+		fetch("http://localhost:5001/register",{
+			method: "POST",
+			crossDomain: true,
+			headers:{
+				"Content-Type":"application/json",
+				Accept:"application/json",
+				"Access-Control-Allow-Origin":"*"
+			},
+			body:JSON.stringify({
+				fname,
+				lname,
+				email,
+				password
+			}),
+
+		}).then(res=>res.json())
+		.then(data =>{console.log(data)})
+		// console.log (fname + lname + email + password);
+		// try{
+		// 	await axios.post("http://localhost:8001/register",{
+		// 		email,password
+		// 	})
+		// 	.then(res=>{
+		// 		if(res.data == "exist"){
+		// 			alert("User Already Exist Please login");
+		// 		}
+		// 		// else if(res.data == "notexist"){
+		// 		// 	history("")
+		// 		// }
+		// 	}
+		// 	)
+		// 	.catch(e=>{
+		// 		alert("Wrong details");
+		// 		console.log(e);
+		// 	})
+		// }
+		// catch(e){
+		// 	console.log(e);
+		// }
 	}
 
-// 	const history = useNavigate();
-// 	const [inputs, setInputs] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-// 	const handleChange = (e) => {
-// 		setInputs((prev) => ({
-// 			...prev,
-// 			[e.target.name]: e.target.value,
-// 		}));
-
-// 		console.log(e.target.value)
-// 	};
-// const sendRequest = async()=>{
-// 	const res = await axios.post('http://localhost:5001/api/signup',{
-// 		name: inputs.name,
-// 		email: inputs.email,
-// 		password: inputs.password
-// 	}).catch(err => console.log(err));
-
-// 	const data = await res.data;
-// 	return data;
-// }
-
-
-// const handleSubmit = (e) => {
-// 	e.preventDefault();
-// 	// send http request
-// 	console.log('test');
-// 	sendRequest().then(() => history("/login"));
-// };
   return (
     <section className='Form '>
       <div className='container my-6 mx-6'>
@@ -72,18 +61,30 @@ function Login() {
             <h1 className='font-weight-bold py-3'> Welcome, Register here!</h1>
             <h2>Register here</h2>
             <form >
-              {/* <div className='form-row'>
+              <div className='form-row'>
                 <div className='col-lg-7'>
                   <input
-										name="name"
-										onChange={handleChange}
+										name="fname"
+										onChange={(e)=>setFname(e.target.value)}
                     type={'text'}
-										value = {inputs.name}
+										value = {fname}
                     placeholder='Enter your First Name'
                     className='form-control my-3 p-2'
                   />
                 </div>
-              </div> */}
+              </div>
+							<div className='form-row'>
+                <div className='col-lg-7'>
+                  <input
+										name="lname"
+										onChange={(e)=>setLname(e.target.value)}
+                    type={'text'}
+										value = {lname}
+                    placeholder='Enter your Last Name'
+                    className='form-control my-3 p-2'
+                  />
+                </div>
+              </div>
 
               <div className='form-row'>
                 <div className='col-lg-7'>
@@ -91,7 +92,7 @@ function Login() {
 									name="email"
 									onChange={(e)=>{setEmail(e.target.value)}}
                     type={'email'}
-
+										value = {email}
                     placeholder='Enter your email'
                     className='form-control my-3 p-2'
                   />
@@ -103,7 +104,7 @@ function Login() {
 									name="password"
 									onChange={(e)=>{setPassword(e.target.value)}}
                     type={'password'}
-
+										value = {password}
                     placeholder='Enter your Password'
                     className='form-control my-3 p-2'
                   />

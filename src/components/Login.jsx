@@ -9,65 +9,66 @@ function Login() {
 	const history = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
 	async function submit(e){
 		e.preventDefault();
-		try{
-			await axios.post("http://localhost:8001/login",{
-				email,password
-			})
-			.then(res=>{
-				let userpassword = res.data[0].password
+		fetch("http://localhost:5001/login",{
+			method: "POST",
+			crossDomain: true,
+			headers:{
+				"Content-Type":"application/json",
+				Accept:"application/json",
+				"Access-Control-Allow-Origin":"*"
+			},
+			body:JSON.stringify({
+				email,
+				password
+			}),
 
-				// if(res.data == "exist"){
-				// 	// history("/user",{state:{id:email}})
+		}).then(res=>res.json())
+		.then(data =>{
 
-				// }
-				if(res.data == "notexist"){
-					alert("User not exist. Please Register")
-				}else{
-					if(password == userpassword){
-						history("/user",{state:{id:email}})
-					}else{
-						alert("Wrong Password")
-					}
-				}
+			console.log(data);
+			if(data.status == "ok"){
+				alert("Login Successful");
+				window.localStorage.setItem("token", data.data);
+				history("/user");
 			}
-			)
-			.catch(e=>{
-				alert("Wrong details");
-				console.log(e);
-			})
-		}
-		catch(e){
-			console.log(e);
-		}
+		})
+
+		// try{
+		// 	await axios.post("http://localhost:8001/login",{
+		// 		email,password
+		// 	})
+		// 	.then(res=>{
+		// 		let userpassword = res.data[0].password
+
+		// 		// if(res.data == "exist"){
+		// 		// 	// history("/user",{state:{id:email}})
+
+		// 		// }
+		// 		if(res.data == "notexist"){
+		// 			alert("User not exist. Please Register")
+		// 		}else{
+		// 			if(password == userpassword){
+		// 				history("/user",{state:{id:email}})
+		// 			}else{
+		// 				alert("Wrong Password")
+		// 			}
+		// 		}
+		// 	}
+		// 	)
+		// 	.catch(e=>{
+		// 		alert("Wrong details");
+		// 		console.log(e);
+		// 	})
+		// }
+		// catch(e){
+		// 	console.log(e);
+		// }
 	}
 
-	// const handleChange = (e) => {
-	// 	setInputs((prev) => ({
-	// 		...prev,
-	// 		[e.target.name]: e.target.value,
-	// 	}));
 
-	// 	console.log(e.target.value)
-	// };
-// const sendRequest = async()=>{
-// 	const res = await axios.post('http://localhost:5001/api/login',{
-// 		email: inputs.email,
-// 		password: inputs.password
-// 	}).catch(err => console.log(err));
-
-// 	const data = await res.data;
-// 	return data;
-// }
-
-
-// const handleSubmit = (e) => {
-// 	e.preventDefault();
-// 	// send http request
-// 	console.log('test');
-// 	sendRequest().then(() => history("/user"));
-// };
   return (
     <section className='Form my-4 mx-5'>
       <div className='container my-4 mx-5'>
@@ -84,6 +85,7 @@ function Login() {
                   <input
 									name='email'
 									onChange={(e)=>{setEmail(e.target.value)}}
+									value={email}
 									type={'email'}
                     placeholder='Enter your email'
                     className='form-control my-3 p-2'
@@ -94,6 +96,7 @@ function Login() {
                 <div className='col-lg-7'>
                   <input
 									name='password'
+									value={password}
                     type={'password'}
 										onChange={(e)=>{setPassword(e.target.value)}}
                     placeholder='Enter your Password'
