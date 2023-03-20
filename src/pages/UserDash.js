@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function DashTest() {
+function UserDash() {
 	const history = useNavigate();
 	const [userData, setUserData] = useState({});
 	const logout =()=>{
@@ -47,4 +47,4 @@ function DashTest() {
 	)
 }
 
-export default DashTest
+export default UserDash

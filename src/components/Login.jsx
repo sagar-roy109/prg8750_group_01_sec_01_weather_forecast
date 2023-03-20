@@ -28,6 +28,9 @@ function Login() {
 		.then(data =>{
 
 			console.log(data);
+			if(data.error){
+				alert(data.error);
+			}
 			if(data.status == "ok"){
 				alert("Login Successful");
 
