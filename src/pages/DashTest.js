@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
 
 
 function DashTest() {
+	const history = useNavigate();
 	const [userData, setUserData] = useState({});
+	const logout =()=>{
+		window.localStorage.clear();
+		window.location.href = "/login";
+	}
 	useEffect(() => {
 		fetch("http://localhost:5001/user-details",{
 			method: "POST",
@@ -17,7 +25,11 @@ function DashTest() {
 			}),
 
 		}).then(res=>res.json())
-		.then(data =>{setUserData(data.data)})
+		.then(data =>{
+			setUserData(data.data)
+
+		});
+
 	}, [])
 
 
@@ -29,6 +41,8 @@ function DashTest() {
 			Last name : {userData.lname}
 			Email: {userData.email}
 			Password: {userData.password}
+
+			<button onClick={logout} className='btn btn-primary'>Log Out</button>
 		</div>
 	)
 }

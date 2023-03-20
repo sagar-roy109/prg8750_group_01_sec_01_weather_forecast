@@ -21,7 +21,7 @@ mongoose.connect(url,{
 	useNewUrlParser: true,
 })
 .then(()=>{
-	app.listen(8000,()=>{
+	app.listen(5001,()=>{
 		console.log("Server started at 5001 & Connected to DB");
 	})
 })
@@ -86,7 +86,13 @@ app.post("/user-details",(req,res)=>{
 	const {token} = req.body;
 
 		try{
-			const user = jwt.verify(token, JWT_SECRET_KEY);
+			const user = jwt.verify(token, JWT_SECRET_KEY,(err, res)=>{
+				if(err){
+					return "Token Expired";
+				}
+				return res;
+			});
+
 			const userEmail = user.email;
 			User.findOne({
 				email:userEmail

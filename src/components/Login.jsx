@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import Loginimg from '../assets/fall.jpg';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
 function Login() {
@@ -32,40 +31,11 @@ function Login() {
 			if(data.status == "ok"){
 				alert("Login Successful");
 				window.localStorage.setItem("token", data.data);
-				history("/user");
+				window.localStorage.setItem("loggedin", "true");
+				window.location.href = "/user";
 			}
 		})
 
-		// try{
-		// 	await axios.post("http://localhost:8001/login",{
-		// 		email,password
-		// 	})
-		// 	.then(res=>{
-		// 		let userpassword = res.data[0].password
-
-		// 		// if(res.data == "exist"){
-		// 		// 	// history("/user",{state:{id:email}})
-
-		// 		// }
-		// 		if(res.data == "notexist"){
-		// 			alert("User not exist. Please Register")
-		// 		}else{
-		// 			if(password == userpassword){
-		// 				history("/user",{state:{id:email}})
-		// 			}else{
-		// 				alert("Wrong Password")
-		// 			}
-		// 		}
-		// 	}
-		// 	)
-		// 	.catch(e=>{
-		// 		alert("Wrong details");
-		// 		console.log(e);
-		// 	})
-		// }
-		// catch(e){
-		// 	console.log(e);
-		// }
 	}
 
 

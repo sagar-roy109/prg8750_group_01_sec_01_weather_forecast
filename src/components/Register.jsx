@@ -12,7 +12,7 @@ function Login() {
 	async function submit(e){
 		e.preventDefault();
 
-		fetch("http://localhost:8000/register",{
+		fetch("http://localhost:5001/register",{
 			method: "POST",
 			crossDomain: true,
 			headers:{
