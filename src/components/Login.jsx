@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import Loginimg from '../assets/fall.jpg';
-import { useNavigate, Link } from 'react-router-dom';
+
 
 function Login() {
 
-	const history = useNavigate();
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -81,7 +81,7 @@ function Login() {
                   </button>
                 </div>
               </div>
-              {/* <a href='#'>Forgot Password</a> */}
+              <a href='/reset'>Forgot Password</a>
               <p>
                 New user? <a href='/register'>Register here</a>
               </p>

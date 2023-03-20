@@ -9,6 +9,7 @@ import Single from './pages/Single';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import DashTest from './pages/DashTest';
+import Reset from './pages/Reset';
 
 const api = {
   key: '42a11fd3bfecf2a59e5faa5d5e9c5f94',
@@ -24,11 +25,11 @@ function App() {
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/test' element={<Test />} />
         <Route path='/single-post' element={<Single />} />
-
         <Route path='/login' element={isLoggedIn !== "true" ? <Login /> : <Navigate replace to={"/user"} />} />
         <Route path='/register' element={<Register />} />
 				<Route path='/user' element={isLoggedIn == "true" ? <DashTest /> : <Navigate replace to={"/login"} />} />
-      </Routes>
+				<Route path= '/reset' element = {<Reset></Reset>} />
+			</Routes>
     </>
   );
 }

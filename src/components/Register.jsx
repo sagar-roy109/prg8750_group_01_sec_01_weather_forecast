@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
-import registerimg from '../assets/login2.jpg';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function Login() {
 
 	const [fname,setFname] = useState('');
@@ -28,29 +29,12 @@ function Login() {
 			}),
 
 		}).then(res=>res.json())
-		.then(data =>{console.log(data)})
-		// console.log (fname + lname + email + password);
-		// try{
-		// 	await axios.post("http://localhost:8001/register",{
-		// 		email,password
-		// 	})
-		// 	.then(res=>{
-		// 		if(res.data == "exist"){
-		// 			alert("User Already Exist Please login");
-		// 		}
-		// 		// else if(res.data == "notexist"){
-		// 		// 	history("")
-		// 		// }
-		// 	}
-		// 	)
-		// 	.catch(e=>{
-		// 		alert("Wrong details");
-		// 		console.log(e);
-		// 	})
-		// }
-		// catch(e){
-		// 	console.log(e);
-		// }
+		.then(data =>{
+
+			toast(data.status);
+
+		})
+
 	}
 
   return (
@@ -118,9 +102,15 @@ function Login() {
                 </div>
               </div>
             </form>
+						<p>
+                Allready have an account ? <a href='/login'>Login here</a>
+      </p>
           </div>
         </div>
+
       </div>
+
+			<ToastContainer toastStyle={{ backgroundColor: "black", color:"white" }}  />
     </section>
   );
 }

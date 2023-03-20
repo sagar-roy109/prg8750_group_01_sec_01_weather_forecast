@@ -3,8 +3,16 @@ const mongoose = require("mongoose");
 const app = new express();
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
+
+
 app.use(cors());
 app.use(express.json());
+app.set("view engine","ejs");
+app.use(express.urlencoded({extended: false}));
+
+
+
 require('./Users');
 const User = mongoose.model("Users");
 const password = 'wS6wCjW3iFoOCjOS';
@@ -38,8 +46,7 @@ app.post("/register", async(req,res)=>{
 	const checkUser = await User.findOne({email});
 	const encPass = await bcrypt.hash(password,10);
 	if(checkUser){
-		return res.send({error : "User exist"});
-
+		return res.send({status : "User exist"});
 	}
 	try{
 		await User.create({
@@ -48,7 +55,7 @@ app.post("/register", async(req,res)=>{
 			email,
 			password: encPass
 		});
-		res.send({status:"ok"});
+		res.send({status:"Registration Successful Please login !"});
 	}catch(err){
 		console.log(err);
 		res.send({status:"error"});
@@ -103,4 +110,89 @@ app.post("/user-details",(req,res)=>{
 		}catch(err){
 			console.log(err)
 		}
+})
+
+
+// forget password
+
+app.post('/forgot-password', async (req, res)=>{
+
+	const {email} = req.body;
+
+	try{
+		const oldUser = await User.findOne({email});
+		if(!oldUser){
+			return res.json({status:"User not exist"});
+		}
+		const secret =  JWT_SECRET_KEY + oldUser.password
+		const token = jwt.sign({email: oldUser.email, id:oldUser._id}, secret, {expiresIn: "5m"})
+		const link = `http://localhost:5001/reset-password/${oldUser._id}/${token}`;
+
+		// sent email
+		var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "toshar109@gmail.com",
+        pass: "dzzwiywmxbbmxvwq",
+      },
+    });
+
+    var mailOptions = {
+      from: "youremail@gmail.com",
+      to: `${oldUser.email}`,
+      subject: "Password Reset",
+      text: link,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        res.json({status:"Email sent please check your email"});
+      }
+    });
+
+		console.log(link);
+	}catch(err){
+		console.log(err);
+	}
+})
+
+
+app.get("/reset-password/:id/:token", async(req, res)=>{
+	const {id, token } = req.params;
+	console.log(req.params)
+	const oldUser = await User.findOne({_id:id});
+		if(!oldUser){
+			return res.json({status:"User not exist"});
+		}
+		const secret =  JWT_SECRET_KEY + oldUser.password;
+		try{
+		const verify = jwt.verify(token,secret);
+		res.render("index", {email: verify.email, status:"Not verifeid"});
+		}catch(err){
+			res.send("Not verified");
+		}
+
+})
+
+
+app.post("/reset-password/:id/:token", async(req, res)=>{
+	const {id, token } = req.params;
+	const {password} =  req.body;
+	const oldUser = await User.findOne({_id:id});
+		if(!oldUser){
+			return res.json({status:"User not exist"});
+		}
+		const secret =  JWT_SECRET_KEY + oldUser.password;
+		try{
+		const verify = jwt.verify(token,secret);
+		const encpass = await bcrypt.hash(password,10);
+		await User.updateOne({_id:id}, {$set:{password:encpass}})
+		// res.send({status:"Password Updated"});
+		res.render("index", {email: verify.email, status:"verified"});
+		}catch(err){
+			res.send("Not verified");
+		}
+
 })
