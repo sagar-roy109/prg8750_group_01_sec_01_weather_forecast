@@ -10,6 +10,13 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import DashTest from './pages/DashTest';
 import Reset from './pages/Reset';
+import Admin from './pages/Admin';
+import Dashboard from './pages/Dashboard';
+import Add from './pages/Add';
+import Update from './pages/Update';
+import Delete from './pages/Delete';
+import Sidebar from './components/Sidebar';
+import Header from './components/Header';
 
 const api = {
   key: '42a11fd3bfecf2a59e5faa5d5e9c5f94',
@@ -29,7 +36,12 @@ function App() {
         <Route path='/register' element={<Register />} />
 				<Route path='/user' element={isLoggedIn == "true" ? <DashTest /> : <Navigate replace to={"/login"} />} />
 				<Route path= '/reset' element = {<Reset></Reset>} />
-			</Routes>
+        <Route path='/admin' element={<Admin />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/add' element={<Add />} />
+        <Route path='/update' element={<Update />} />
+        <Route path='/delete' element={<Delete />} />
+      </Routes>
     </>
   );
 }
