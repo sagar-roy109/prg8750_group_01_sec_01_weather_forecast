@@ -138,3 +138,10 @@ font-size: 48px;
 .single-post{
 	margin-top: 50px;
 }
+
+
+.amount {
+  margin-top: 50px;
+  padding-top: 50px;
+  align-items: center;
+}

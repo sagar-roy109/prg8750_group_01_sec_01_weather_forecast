@@ -11,7 +11,7 @@ function SearchTemp() {
 
 
   useEffect(()=>{
-	
+	//https://geolocation-db.com/json/a9e48c70-8b22-11ed-8d13-bd165d1291e3
 	fetch("https://geolocation-db.com/json/a9e48c70-8b22-11ed-8d13-bd165d1291e3")
 	.then(res=>res.json())
 	.then(idDetails =>{
@@ -19,9 +19,9 @@ function SearchTemp() {
 		 setQuery(idDetails.city);
 
 	})}
-
 	,[])
 
+	console.log(query)
 
 	useEffect(()=>{
 	
@@ -37,18 +37,12 @@ function SearchTemp() {
   })}
 
 	, [query])
-
-
-
-
-
  const search = evt =>{
   if (evt.key === "Enter") {
 
     setQuery(evt.target.value);
   }
  }
-
 
  const dateBuilder = (d) => {
 	let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -61,8 +55,6 @@ function SearchTemp() {
 
 	return `${day} ${date} ${month} ${year}`
 }
-
-
 	return (
 		<div className={(typeof weather.main != "undefined")? ((weather.main.temp>16)? 'app warm' : 'app'):'app'}>
 		<main>
@@ -72,7 +64,6 @@ function SearchTemp() {
 				className="search-bar"
 				placeholder="Search"
 				//onChange={e => setQuery(e.target.value)}
-				
 				onKeyPress={search}
 				/>
 			</div>
@@ -95,5 +86,4 @@ function SearchTemp() {
 </div>
 	)
 }
-
 export default SearchTemp
