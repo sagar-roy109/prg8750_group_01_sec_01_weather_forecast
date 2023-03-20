@@ -21,7 +21,7 @@ mongoose.connect(url,{
 	useNewUrlParser: true,
 })
 .then(()=>{
-	app.listen(5001,()=>{
+	app.listen(8000,()=>{
 		console.log("Server started at 5001 & Connected to DB");
 	})
 })
