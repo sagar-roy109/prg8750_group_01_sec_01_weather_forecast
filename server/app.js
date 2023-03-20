@@ -74,7 +74,7 @@ app.post("/login", async(req,res)=>{
 	if(await bcrypt.compare(password, checkUser.password)){
 		const token = jwt.sign({email: checkUser.email},JWT_SECRET_KEY);
 		if(res.status(201)){
-			return res.json({status : "ok", data: token});
+			return res.json({status : "ok", data: token, admin:checkUser.admin});
 		}else{
 			return res.json({error: "error"})
 		}

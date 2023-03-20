@@ -71,9 +71,15 @@ function EmployeeTable({ allEmployees }) {
         </td>
       </tr>
     ));
+
+		const logout =()=>{
+			window.localStorage.clear();
+			window.location.href = "/login";
+		}
   return (
     <Sidebar>
       <h1 class='emp_data'>Post Details</h1>
+			<button onClick={logout} className='btn btn-primary'>Log Out</button>
       <Table className='table' striped bordered hover variant='dark'>
         <thead>
           <tr>

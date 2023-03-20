@@ -8,7 +8,7 @@ import Test from './pages/Test';
 import Single from './pages/Single';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import DashTest from './pages/DashTest';
+import UserDash from './pages/UserDash'
 import Reset from './pages/Reset';
 import Admin from './pages/Admin';
 import Dashboard from './pages/Dashboard';
@@ -25,6 +25,16 @@ const api = {
 
 function App() {
 	const isLoggedIn = window.localStorage.getItem("loggedin")
+	const admin = window.localStorage.getItem("admin")
+	const UserPath = ()=>{
+		if(isLoggedIn == "true" && admin == "true"){
+			return   <Route path='/user' element={isLoggedIn == "true"  ? <Dashboard />  : <Navigate replace to={"/login"} />} />
+		}else if(isLoggedIn == "true" && admin == "false"){
+			 return <Route path='/user' element={isLoggedIn == "true"  ? <UserDash />  : <Navigate replace to={"/login"} />} />
+		}
+	}
+
+
   return (
     <>
       <Routes>
@@ -34,10 +44,11 @@ function App() {
         <Route path='/single-post' element={<Single />} />
         <Route path='/login' element={isLoggedIn !== "true" ? <Login /> : <Navigate replace to={"/user"} />} />
         <Route path='/register' element={<Register />} />
-				<Route path='/user' element={isLoggedIn == "true" ? <DashTest /> : <Navigate replace to={"/login"} />} />
+				{/* <Route path='/user' element={UserPath} /> */}
+				{UserPath()}
+
 				<Route path= '/reset' element = {<Reset></Reset>} />
         <Route path='/admin' element={<Admin />} />
-        <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/add' element={<Add />} />
         <Route path='/update' element={<Update />} />
         <Route path='/delete' element={<Delete />} />
