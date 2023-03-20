@@ -19,7 +19,6 @@ function Header() {
           </Nav>
           <Nav>
             <Nav.Link href='/login'>Login</Nav.Link>
-            <Nav.Link href='/admin'>Admin</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
