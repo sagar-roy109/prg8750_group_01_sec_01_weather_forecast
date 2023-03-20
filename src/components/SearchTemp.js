@@ -11,20 +11,18 @@ function SearchTemp() {
 
 
   useEffect(()=>{
-	
+
 	fetch("https://geolocation-db.com/json/a9e48c70-8b22-11ed-8d13-bd165d1291e3")
 	.then(res=>res.json())
 	.then(idDetails =>{
-		
-		 setQuery(idDetails.city);
 
-	})}
+	setQuery(idDetails.city);
 
-	,[])
+	})}, [])
 
 
 	useEffect(()=>{
-	
+
 	fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
     .then(res => res.json())
     .then(result => {
@@ -32,8 +30,8 @@ function SearchTemp() {
       setWeather(result);
 
 	  console.log(result)
-      
-      
+
+
   })}
 
 	, [query])
@@ -72,7 +70,7 @@ function SearchTemp() {
 				className="search-bar"
 				placeholder="Search"
 				//onChange={e => setQuery(e.target.value)}
-				
+
 				onKeyPress={search}
 				/>
 			</div>
