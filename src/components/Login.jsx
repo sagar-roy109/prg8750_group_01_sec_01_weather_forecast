@@ -30,8 +30,10 @@ function Login() {
 			console.log(data);
 			if(data.status == "ok"){
 				alert("Login Successful");
+
 				window.localStorage.setItem("token", data.data);
 				window.localStorage.setItem("loggedin", "true");
+				window.localStorage.setItem("admin", data.admin);
 				window.location.href = "/user";
 			}
 		})
