@@ -16,6 +16,7 @@ function Header() {
             <Nav.Link href='/'>Home</Nav.Link>
             <Nav.Link href='/blogs'>Blogs</Nav.Link>
             <Nav.Link href='/test'>Test</Nav.Link>
+            <Nav.Link href='/graph'>Graph</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href='/login'>Login</Nav.Link>

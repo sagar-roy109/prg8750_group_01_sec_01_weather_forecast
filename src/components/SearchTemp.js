@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState , useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 
 function SearchTemp() {
 	const api = {
@@ -7,7 +9,7 @@ function SearchTemp() {
 	}
 	const [query, setQuery] = useState('');
     const [weather, setWeather] = useState('');
-
+	const [weather_graph,setGraphWeather] = useState('');
 
 
   useEffect(()=>{
@@ -32,7 +34,11 @@ function SearchTemp() {
 	  console.log(result)
 
 
-  })}
+  })
+
+
+
+	}
 
 	, [query])
 
@@ -42,10 +48,25 @@ function SearchTemp() {
 
  const search = evt =>{
   if (evt.key === "Enter") {
+	setQuery(evt.target.value);
+	fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?unitGroup=metric&include=hours&key=EPHZ2R3BGFE2BPJJX9LU7MU52&contentType=json`)
+        .then(res => res.json())
+        .then(result => {
+          setGraphWeather(result);
+          
+          console.log(result);
+        });
 
-    setQuery(evt.target.value);
+
+    
+
+
+
   }
  }
+
+
+
 
 
  const dateBuilder = (d) => {
@@ -87,6 +108,7 @@ function SearchTemp() {
 			<p className='feels-like'>Feels Like: {Math.round(weather.main.feels_like)}℃</p>
 
 			</div>
+			<Link to="/graph" state={{ data: weather_graph }}>  15 day Weather Forecast</Link>
 		</div>
 		):('')}
 	</main>
@@ -94,4 +116,4 @@ function SearchTemp() {
 	)
 }
 
-export default SearchTemp
+export default SearchTemp;
