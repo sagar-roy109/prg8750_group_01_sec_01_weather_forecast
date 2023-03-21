@@ -3,40 +3,68 @@ import { Form, Button } from 'react-bootstrap';
 import Sidebar from '../components/Sidebar';
 
 function Add() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = document.forms.addPostForm;
-    const addPost = {
-      img: form.img.value,
-      DOP: form.DOP.value,
-      title: form.title.value,
-      posttype: form.posttype.value,
-    };
-    const query = ` mutation Mutation { createPost(  img:"${addPost.img}", DOP:"${addPost.DOP}",
-            title: "${addPost.title}",
-            posttype: "${addPost.posttype}"
-            ) {
-                id
-                img
-                DOP
-                title
-                posttype
-                
-            }}`;
-    console.log(query);
-    fetch('http://localhost:4000/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query }),
-    }).then(async function (response) {
-      const body = response.json();
-      console.log(body);
-      window.location.replace('/dashboard');
-    });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const form = document.forms.addPostForm;
+  //   const addPost = {
+  //     img: form.img.value,
+  //     DOP: form.DOP.value,
+  //     title: form.title.value,
+  //     posttype: form.posttype.value,
+  //   };
+  //   const query = ` mutation Mutation { createPost(  img:"${addPost.img}", DOP:"${addPost.DOP}",
+  //           title: "${addPost.title}",
+  //           posttype: "${addPost.posttype}"
+  //           ) {
+  //               id
+  //               img
+  //               DOP
+  //               title
+  //               posttype
+
+  //           }}`;
+  //   console.log(query);
+  //   fetch('http://localhost:4000/graphql', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ query }),
+  //   }).then(async function (response) {
+  //     const body = response.json();
+  //     console.log(body);
+  //     window.location.replace('/dashboard');
+  //   });
+  // };
+
+	const [title, setTitle] =  useState('');
+const addPost =(e)=>{
+	e.preventDefault();
+
+		fetch("http://localhost:5001/add-post",{
+			method: "POST",
+			crossDomain: true,
+			headers:{
+				"Content-Type":"application/json",
+				Accept:"application/json",
+				"Access-Control-Allow-Origin":"*"
+			},
+			body:JSON.stringify({
+				title
+			}),
+
+		}).then(res=>res.json())
+		.then(data =>{
+			console.log(data.status);
+			// toast(data.status);
+
+		})
+
+
+	console.log('test');
+}
+
   return (
     <Sidebar>
-      <Form name='addPostForm' onSubmit={handleSubmit} className='round'>
+      {/* <Form name='addPostForm' onSubmit={handleSubmit} className='round'>
         <div className='form-group'>
           <Form.Label htmlFor='img' className='form-label mt-4'>
             Image Name
@@ -97,7 +125,12 @@ function Add() {
         >
           Add Post
         </Button>
-      </Form>
+      </Form> */}
+
+			<form onSubmit={addPost}>
+				<input type="text" onChange={(e)=>setTitle(e.target.value)}/>
+				<button >Submit</button>
+			</form>
     </Sidebar>
   );
 }

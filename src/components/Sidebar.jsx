@@ -8,7 +8,7 @@ const Sidebar = ({ children }) => {
 
   const menuItem = [
     {
-      path: '/dashboard',
+      path: '/user',
       name: 'Dashboard',
       icon: <FaTh />,
     },
@@ -45,7 +45,7 @@ const Sidebar = ({ children }) => {
             to={item.path}
             key={index}
             className='link'
-            
+
           >
             <div className='icon'>{item.icon}</div>
             <div
