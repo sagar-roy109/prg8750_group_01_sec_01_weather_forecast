@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 
 
+
 app.use(cors());
 app.use(express.json());
 app.set("view engine","ejs");
@@ -15,6 +16,9 @@ app.use(express.urlencoded({extended: false}));
 
 require('./Users');
 const User = mongoose.model("Users");
+require('./postmodel');
+const Post = mongoose.model("Post");
+
 const password = 'wS6wCjW3iFoOCjOS';
 const url = `mongodb+srv://sagar:${password}@weatherapp.rezxpzt.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -43,6 +47,7 @@ mongoose.connect(url,{
 app.post("/register", async(req,res)=>{
 
 	const {fname, lname, email, password} = req.body;
+
 	const checkUser = await User.findOne({email});
 	const encPass = await bcrypt.hash(password,10);
 	if(checkUser){
@@ -61,6 +66,8 @@ app.post("/register", async(req,res)=>{
 		res.send({status:"error"});
 	}
 })
+
+
 
 
 //login
@@ -195,4 +202,60 @@ app.post("/reset-password/:id/:token", async(req, res)=>{
 			res.send("Not verified");
 		}
 
+})
+
+
+
+
+
+
+
+/**** POST ADD FROM ADMIN */
+
+
+// add post
+app.post("/add-post", async(req,res)=>{
+
+	const {title} = req.body;
+
+	try{
+		await Post.create({
+			title
+		});
+		res.send({status:"Post Added"});
+	}catch(err){
+		console.log(err);
+		res.send({status:"error"});
+	}
+})
+
+
+// read post
+
+app.get("/all-post", async(req,res)=>{
+
+
+	try{
+		const posts=  await Post.find({}, { __v:0});
+		res.send({status:"All post found", posts:posts});
+	}catch(err){
+		console.log(err);
+		res.send({status:"error"});
+	}
+})
+
+
+// Post delete
+
+app.get('/post-delete/:id',async(req,res)=>{
+
+	const id = req.params.id;
+
+	try{
+	 await Post.deleteOne({_id: id});
+		res.json({status:"Post Deleted"});
+	}catch(err){
+		console.log(err);
+		res.send({status:"error"});
+	}
 })
