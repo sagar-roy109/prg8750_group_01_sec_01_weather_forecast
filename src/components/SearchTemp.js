@@ -48,7 +48,7 @@ function SearchTemp() {
 
  const search = evt =>{
   if (evt.key === "Enter") {
-
+	setQuery(evt.target.value);
 	fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?unitGroup=metric&include=hours&key=EPHZ2R3BGFE2BPJJX9LU7MU52&contentType=json`)
         .then(res => res.json())
         .then(result => {
@@ -58,7 +58,7 @@ function SearchTemp() {
         });
 
 
-    setQuery(evt.target.value);
+    
 
 
 

@@ -13,7 +13,7 @@ const ChartsPage = ({ data }) => {
 
    
      <div >
-       <div className="Graphheader"> {city} 15-day Weather Forecast </div>
+       <div className="Graphheader">  15-day Weather Forecast </div>
 
 
    
