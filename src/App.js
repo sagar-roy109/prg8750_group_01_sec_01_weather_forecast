@@ -17,11 +17,8 @@ import Update from './pages/Update';
 import Delete from './pages/Delete';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
+import Graph from './pages/Graph';
 
-const api = {
-  key: '42a11fd3bfecf2a59e5faa5d5e9c5f94',
-  base: 'https://api.openweathermap.org/data/2.5/',
-};
 
 function App() {
 	const isLoggedIn = window.localStorage.getItem("loggedin")
@@ -52,6 +49,7 @@ function App() {
         <Route path='/add' element={<Add />} />
         <Route path='/update' element={<Update />} />
         <Route path='/delete' element={<Delete />} />
+        <Route path='/graph' element={<Graph />} />
       </Routes>
     </>
   );
