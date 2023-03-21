@@ -6,11 +6,8 @@ import { Route, Routes } from 'react-router-dom';
 import Blogs from './pages/Blogs';
 import Test from './pages/Test';
 import Single from './pages/Single';
+import Graph from './pages/Graph';
 
-const api = {
-  key: '42a11fd3bfecf2a59e5faa5d5e9c5f94',
-  base: 'https://api.openweathermap.org/data/2.5/',
-};
 
 function App() {
   return (
@@ -20,6 +17,7 @@ function App() {
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/test' element={<Test />} />
 				<Route path='/single-post' element={<Single />} />
+        <Route path='/graph' element={<Graph />} />
       </Routes>
     </>
   );
