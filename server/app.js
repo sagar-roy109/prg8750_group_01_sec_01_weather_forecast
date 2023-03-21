@@ -259,3 +259,22 @@ app.get('/post-delete/:id',async(req,res)=>{
 		res.send({status:"error"});
 	}
 })
+
+
+
+// USER CITY MENU
+
+app.post('/add-city',(req, res)=>{
+	const {city, email} = req.body;
+
+
+		try{
+			const userEmail = email;
+			User.updateOne({email:userEmail},{$push:{cities:city}})
+			.then(data=>{
+				res.send({data:data, status:"ok"})
+			})
+		}catch(err){
+			console.log(err)
+		}
+})

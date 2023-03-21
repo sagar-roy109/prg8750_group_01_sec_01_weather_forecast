@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer base {
   html {
     font-family: 'Poppins', sans-serif;
@@ -211,4 +213,23 @@ main {
 .icon,
 .link_text {
   font-size: 20px;
+}
+
+
+/** USER DASHBOARD **/
+
+.user-dashboard{
+	background-color: #fff;
+	margin: 20px 0;
+	padding: 30px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+
+.user-dashboard h1 {
+	text-align: center;
+	width: 100%;
 }
