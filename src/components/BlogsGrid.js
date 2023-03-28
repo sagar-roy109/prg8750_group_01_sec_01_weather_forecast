@@ -1,20 +1,34 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
+import React, { useEffect, useState } from 'react';
 
-function BlogGrid() {
+function BlogGrid(props) {
+  const title = props.posts.title;
+  const img = props.posts.img;
+  const posttype = props.posts.posttype;
+  const id = props.posts._id;
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    const imgElement = new Image();
+    imgElement.src = img;
+    imgElement.onload = () => {
+      setImage(imgElement.src);
+    };
+  }, [img]);
   return (
-    <Card >
-      <Card.Img variant="top" src="https://www.littlethings.info/wp-content/uploads/2014/04/dummy-image-green-e1398449160839.jpg" />
-      <Card.Body>
-        <Card.Title>Post Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-				<p className='text-right'> Published : 8/12/23 </p>
-
-      </Card.Body>
-    </Card>
+    <a href={`/single-post/${id}`}>
+      <CardGroup className='card-group'>
+        <Card className='card'>
+          <Card.Img variant='top' src={img} />
+          <Card.Body>
+            <Card.Title>{title}</Card.Title>
+            <Card.Text>{posttype}</Card.Text>
+          </Card.Body>
+        </Card>
+      </CardGroup>
+    </a>
   );
 }
 

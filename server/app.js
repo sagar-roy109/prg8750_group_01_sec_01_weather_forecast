@@ -189,11 +189,13 @@ app.post('/reset-password/:id/:token', async (req, res) => {
 
 // add post
 app.post('/add-post', async (req, res) => {
-  const { title } = req.body;
+  const { title, img, posttype, base64 } = req.body;
 
   try {
     await Post.create({
       title,
+      img: base64,
+      posttype,
     });
     res.send({ status: 'Post Added' });
   } catch (err) {
@@ -214,6 +216,17 @@ app.get('/all-post', async (req, res) => {
   }
 });
 
+app.get('/post/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const posts = await Post.findOne({ _id: id }, { __v: 0 });
+    res.send({ status: 'post found', posts: posts });
+  } catch (err) {
+    console.log(err);
+    res.send({ status: 'error' });
+  }
+});
+
 // Post delete
 
 app.get('/post-delete/:id', async (req, res) => {
@@ -228,6 +241,34 @@ app.get('/post-delete/:id', async (req, res) => {
   }
 });
 
+app.put('/edit/:id', async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const { title, img, posttype, base64 } = req.body;
+  console.log(title, img, posttype);
+  try {
+    const posts = await Post.findByIdAndUpdate(
+      { _id: id },
+      { title, img: base64, posttype }
+    );
+    console.log(posts);
+    res.json({ status: 'Post updated', posts: posts });
+  } catch (err) {
+    console.log(err);
+    res.send({ status: 'error' });
+  }
+});
+
+app.get('/single-post/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const posts = await Post.findOne({ _id: id }, { __v: 0 });
+    res.send({ status: 'post found', posts: posts });
+  } catch (err) {
+    console.log(err);
+    res.send({ status: 'error' });
+  }
+});
 // USER CITY MENU
 
 app.post('/add-city', (req, res) => {

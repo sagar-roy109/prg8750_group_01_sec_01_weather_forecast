@@ -1,19 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
-import { Editor } from 'react-draft-wysiwyg';
 
 function Add() {
   const [title, setTitle] = useState('');
   const [img, setImg] = useState('');
   const [posttype, setPosttype] = useState('');
+  const path = window.location.pathname;
+  const parts = path.split('/');
+  const id = parts[parts.length - 1];
+  const [postDetails, setPostDetails] = useState({});
 
-  const addPost = (e) => {
+  useEffect(() => {
+    fetch(`http://localhost:5001/post/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.posts);
+        setPostDetails(data.posts);
+        // toast(data.status);
+      });
+
+    console.log('posted');
+  }, []);
+
+  const editPost = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:5001/add-post', {
-      method: 'POST',
+    fetch(`http://localhost:5001/edit/${id}`, {
+      method: 'PUT',
       crossDomain: true,
       headers: {
         'Content-Type': 'application/json',
@@ -28,10 +43,10 @@ function Add() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         console.log(data.status);
+        console.log(data.posts);
         window.location.replace('/user');
-        //toast(data.status);
+        // toadata.status);
       });
 
     console.log('posted');
@@ -54,32 +69,28 @@ function Add() {
       <Sidebar>
         {
           <div className='addstyle'>
-            <form
-              onSubmit={addPost}
-              encType='multipart/form-data'
-              className='form-outline mb-4'
-            >
+            <form onSubmit={editPost} className='round'>
               <div class='form-group'>
-                <Form.Label htmlFor='title' className='form-label mt-4'>
+                <Form.Label htmlFor='dateofpost' className='form-label mt-4'>
                   Title
                 </Form.Label>{' '}
                 <input
                   type='text'
                   className='form-control'
-                  onChange={(e) => {
-                    setTitle(e.target.value);
-                  }}
+                  placeholder={postDetails.title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
               <div class='form-group'>
-                <Form.Label htmlFor='posttype' className='form-label mt-4'>
-                  Post Description:
+                <Form.Label htmlFor='dateofpost' className='form-label mt-4'>
+                  Post Description
                 </Form.Label>
                 <textarea
                   type='text'
                   className='form-control'
                   cols='50'
                   rows='6'
+                  placeholder={postDetails.posttype}
                   onChange={(e) => setPosttype(e.target.value)}
                 />
               </div>
@@ -87,14 +98,12 @@ function Add() {
                 <Form.Label htmlFor='img' className='form-label mt-4'>
                   Img
                 </Form.Label>
+
                 <input
                   type='file'
                   filename='img'
                   accept='image/jpeg,image/png,image/gif'
                   className='form-control'
-                  /*onChange={(e) => {
-                  setImg(e.target.filename);
-                  console.log(img); // add this line*/
                   onChange={converttoBase64}
                 />
                 {img === '' || img == null ? (
@@ -104,9 +113,9 @@ function Add() {
                 )}
               </div>
 
-              <div class='form-check d-flex justify-content-center mb-4'>
+              <div class='full-width'>
                 <button type='submit' className='btn btn-primary'>
-                  Add Post
+                  Edit Post
                 </button>
               </div>
             </form>
