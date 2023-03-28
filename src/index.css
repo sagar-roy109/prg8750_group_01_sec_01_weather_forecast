@@ -251,6 +251,7 @@ Payment Gateway
   background-color: #fff;
   border: 1px solid;
   color: black;
+}
 
 .subscription-section form {
   display: inline-block;
@@ -273,7 +274,14 @@ Payment Gateway
   width: 200px;
   transition: all 0.5s;
 }
-.top_section {
+
+
+
+/* top section conflict */
+
+/*.top_section {
+}
+
 .subscription-section .form-group {
   display: flex;
   align-items: center;
@@ -297,7 +305,7 @@ Payment Gateway
   color: #fff;
   cursor: pointer;
 }
-
+*/
 
 /** USER DASHBOARD **/
 
