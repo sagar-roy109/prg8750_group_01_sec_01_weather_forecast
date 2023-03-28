@@ -17,6 +17,9 @@ app.use(express.urlencoded({extended: false}));
 
 require('./Users');
 const User = mongoose.model("Users");
+require('./postmodel');
+const Post = mongoose.model("Post");
+
 const password = 'wS6wCjW3iFoOCjOS';
 const url = `mongodb+srv://sagar:${password}@weatherapp.rezxpzt.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -45,6 +48,7 @@ mongoose.connect(url,{
 app.post("/register", async(req,res)=>{
 
 	const {fname, lname, email, password} = req.body;
+
 	const checkUser = await User.findOne({email});
 	const encPass = await bcrypt.hash(password,10);
 	if(checkUser){
@@ -63,6 +67,8 @@ app.post("/register", async(req,res)=>{
 		res.send({status:"error"});
 	}
 })
+
+
 
 
 //login
@@ -129,6 +135,8 @@ app.post('/forgot-password', async (req, res)=>{
 		const secret =  JWT_SECRET_KEY + oldUser.password
 		const token = jwt.sign({email: oldUser.email, id:oldUser._id}, secret, {expiresIn: "5m"})
 		const link = `http://localhost:5001/reset-password/${oldUser._id}/${token}`;
+
+
 
 		// sent email
 		var transporter = nodemailer.createTransport({
@@ -197,6 +205,81 @@ app.post("/reset-password/:id/:token", async(req, res)=>{
 			res.send("Not verified");
 		}
 
+})
+
+
+
+
+
+
+
+/**** POST ADD FROM ADMIN */
+
+
+// add post
+app.post("/add-post", async(req,res)=>{
+
+	const {title} = req.body;
+
+	try{
+		await Post.create({
+			title
+		});
+		res.send({status:"Post Added"});
+	}catch(err){
+		console.log(err);
+		res.send({status:"error"});
+	}
+})
+
+
+// read post
+
+app.get("/all-post", async(req,res)=>{
+
+
+	try{
+		const posts=  await Post.find({}, { __v:0});
+		res.send({status:"All post found", posts:posts});
+	}catch(err){
+		console.log(err);
+		res.send({status:"error"});
+	}
+})
+
+
+// Post delete
+
+app.get('/post-delete/:id',async(req,res)=>{
+
+	const id = req.params.id;
+
+	try{
+	 await Post.deleteOne({_id: id});
+		res.json({status:"Post Deleted"});
+	}catch(err){
+		console.log(err);
+		res.send({status:"error"});
+	}
+})
+
+
+
+// USER CITY MENU
+
+app.post('/add-city',(req, res)=>{
+	const {city, email} = req.body;
+
+
+		try{
+			const userEmail = email;
+			User.updateOne({email:userEmail},{$push:{cities:city}})
+			.then(data=>{
+				res.send({data:data, status:"ok"})
+			})
+		}catch(err){
+			console.log(err)
+		}
 })
 
 ///
