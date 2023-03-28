@@ -45,6 +45,7 @@ function App() {
 				<Route path='/single-post' element={<Single />} />
         <Route path='/donate' element={<Donate />} />
         
+        
         <Route path='/single-post' element={<Single />} />
         <Route path='/login' element={isLoggedIn !== "true" ? <Login /> : <Navigate replace to={"/user"} />} />
         <Route path='/register' element={<Register />} />

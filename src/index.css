@@ -49,173 +49,205 @@ main {
   width: 100%;
 }
 
-.search-box {
-  padding-top: 20px;
-  width: 100%;
-  margin: 0 0 75px;
-}
 
-.search-box .search-bar {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  appearance: none;
-  background: none;
-  border: none;
-  outline: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 16px 16px 16px 16px;
-  margin-top: -25px;
-  box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
-  color: #313131;
-  font-size: 20px;
-  transition: 0.4s ease;
+/*
+Payment Gateway
+*/
+
+.payment {
   text-align: center;
+  margin-top: 200px;
 }
 
-.search-box .search-bar:focus {
-  background-color: rgba(255, 255, 255, 0.75);
-}
-
-.location-box .location {
-  color: #fff;
-  font-size: 32px;
-  font-weight: 500;
-  text-align: center;
-  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
-}
-
-.location-box .date {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 300;
-  font-style: italic;
-  text-align: center;
-  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
-}
-
-.weather-box {
-  text-align: center;
-}
-
-.weather-box .temp {
-  position: relative;
-  display: inline-block;
-  margin: 30px auto;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-
-  padding: 15px 25px;
-
-  color: #fff;
-  font-size: 102px;
-  font-weight: 900;
-
-  text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
-  text-align: center;
-  box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
-}
-
-.weather-box .weather {
-  color: #fff;
-  font-size: 48px;
-  font-weight: 700;
-  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
-}
-
-.feels-like {
-  color: #fff;
-  font-size: 48px;
-}
-/** BLOG LISTING PAGE **/
-
-.blog-container {
-  margin: 40px 0;
-}
-
-.blog-container .card {
-  margin-bottom: 25px;
-}
-
-/** SINGLE POST **/
-
-.single-post {
-  margin-top: 50px;
-}
-/* Login styles */
-.row {
-  background: white;
-}
-.btn1 {
-  border: none;
-  outline: none;
-  height: 50px;
-  width: 100%;
-  background-color: black;
-  color: #fff;
-  border-radius: 4px;
-  font-weight: bold;
-}
-.btn1:hover {
+.amount{
+  margin-bottom: 70px;
   background-color: #fff;
-  border: 1px solid;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  font-size: 50px;
+  height: 80px;
+  padding: 8px;
+  width: 800px;
+  text-align: center;
+}
+
+.donate-title {
+  font-size: 100px;
   color: black;
 }
 
-.list-group a:hover {
-  background-color: darkblue;
-  color: white;
+
+
+/* For small devices, such as smartphones */
+@media only screen and (max-width: 600px) {
+  .donate-title{
+    color: black;
+    font-size: 50px;
+  }
+
+  .amount {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+/* For medium devices, such as tablets */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .donate-title{
+    color: black;
+    font-size: 10px;
+  }
+
+  .amount {
+    width: 75%;
+  }
+}
+
+
+/* Small devices (phones) */
+@media only screen and (max-width: 600px) {
+  .search-box {
+    padding-top: 10px;
+    margin: 0 0 50px;
+  }
+
+  .search-box .search-bar {
+    font-size: 16px;
+  }
+
+  .location-box .location {
+    font-size: 24px;
+  }
+
+  .location-box .date {
+    font-size: 16px;
+  }
+
+  .weather-box .temp {
+    margin: 20px auto;
+    font-size: 72px;
+  }
+
+  .weather-box .weather {
+    font-size: 32px;
+  }
+
+  .feels-like {
+    font-size: 32px;
+  }
+}
+
+/* Medium devices (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  .search-box {
+    padding-top: 15px;
+    margin: 0 0 60px;
+  }
+
+  .search-box .search-bar {
+    font-size: 18px;
+  }
+
+  .location-box .location {
+    font-size: 28px;
+  }
+
+  .location-box .date {
+    font-size: 18px;
+  }
+
+  .weather-box .temp {
+    margin: 25px auto;
+    font-size: 84px;
+  }
+
+  .weather-box .weather {
+    font-size: 36px;
+  }
+
+  .feels-like {
+    font-size: 36px;
+  }
+}
+
+/* Large devices (laptops/desktops) */
+@media only screen and (min-width: 993px) {
+  .search-box {
+    padding-top: 20px;
+    margin: 0 0 75px;
+  }
+
+  .search-box .search-bar {
+    font-size: 20px;
+  }
+
+  .location-box .location {
+    font-size: 32px;
+  }
+
+  .location-box .date {
+    font-size: 20px;
+  }
+
+  .weather-box .temp {
+    margin: 30px auto;
+    font-size: 102px;
+  }
+
+  .weather-box .weather {
+    font-size: 48px;
+  }
+
+  .feels-like {
+    font-size: 48px;
+  }
+}
+
+
+
+/*Styles for Subscription box*/
+.subscription-section {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subscription-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.subscription-section form {
+  display: inline-block;
+}
+
+.subscription-section label {
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.subscription-section .form-group {
+  display: flex;
+  align-items: center;
+}
+
+.subscription-section input[type="email"] {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  flex: 1;
+}
+
+.subscription-section button[type="submit"] {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
   cursor: pointer;
-}
-
-/* css for admin Page */
-.container {
-  display: flex;
-}
-.sidebar {
-  background: #000;
-  color: #fff;
-  height: 100vh;
-  width: 200px;
-  transition: all 0.5s;
-}
-.top_section {
-  display: flex;
-  align-items: center;
-  padding: 20px 15px;
-}
-.logo {
-  font-size: 30px;
-}
-.bars {
-  display: flex;
-  font-size: 25px;
-  margin-left: 50px;
-}
-.link {
-  display: flex;
-  color: #fff;
-  padding: 25px 15px;
-  gap: 25px;
-  transition: all 0.5s;
-}
-.link:hover {
-  background: lightskyblue;
-  color: #000;
-  transition: all 0.5s;
-}
-.active {
-  background: lightskyblue;
-  color: #000;
-}
-.icon,
-.link_text {
-  font-size: 20px;
-}
-
-
-.amount {
-  margin-top: 50px;
-  padding-top: 50px;
-  align-items: center;
 }

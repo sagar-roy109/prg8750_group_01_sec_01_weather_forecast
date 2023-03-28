@@ -1,16 +1,14 @@
-import React from 'react'
-import Header from '../components/Header'
-import Donation from '../components/Donation'
-
+import React from 'react';
+import Header from '../components/Header';
+import App from '../components/Donation';
 
 const Donate = () => {
-	return (
-		<>
-			<Header></Header>
-            <Donation></Donation>
-			
-		</>
-	)
-}
+  return (
+    <>
+      <Header></Header>
+      <App></App>
+    </>
+  );
+};
 
-export default Donate
+export default Donate;

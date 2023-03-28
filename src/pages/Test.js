@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import BlogList from '../components/BlogList';
 import getWeatherData from '../services/weatherService';
 import getFormattedWeatherData from '../services/weatherService';
+import SubscriptionSection from '../components/Subscribing';
 import { useState, useEffect } from 'react';
 
 const Test = () => {
@@ -79,6 +80,9 @@ const formatBackground = () => {
           </div>
         )}
         
+      </div>
+      <div>
+        <SubscriptionSection></SubscriptionSection>
       </div>
     </div>
   );
