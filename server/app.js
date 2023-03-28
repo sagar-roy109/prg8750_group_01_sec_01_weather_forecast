@@ -4,16 +4,8 @@ const app = new express();
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
-const multer = require('multer');
-const bodyParser = require('body-parser');
-const fs = require('fs');
-const path = require('path');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Set EJS as templating engine
-app.set('view engine', 'ejs');
+const cron = require('node-cron');
+const Nodefetch = require('node-fetch');
 
 app.use(cors());
 app.use(express.json());
@@ -30,17 +22,6 @@ const url = `mongodb+srv://sagar:${password}@weatherapp.rezxpzt.mongodb.net/?ret
 
 const jwt = require('jsonwebtoken');
 const JWT_SECRET_KEY = 'kjhagdjhasgdibadkj%%*&^&^%ajhsdbajhds';
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads');
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now());
-  },
-});
-
-const upload = multer({ storage: storage });
 
 // Mongo Db Connect
 mongoose
@@ -203,7 +184,6 @@ app.post('/reset-password/:id/:token', async (req, res) => {
     res.send('Not verified');
   }
 });
-
 /**** POST ADD FROM ADMIN */
 
 // add post
@@ -287,4 +267,86 @@ app.get('/single-post/:id', async (req, res) => {
     console.log(err);
     res.send({ status: 'error' });
   }
+});
+
+// USER CITY MENU
+
+app.post('/add-city', (req, res) => {
+  const { city, email } = req.body;
+
+  try {
+    const userEmail = email;
+    User.updateOne({ email: userEmail }, { $push: { cities: city } }).then(
+      (data) => {
+        res.send({ data: data, status: 'ok' });
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+///
+
+// Subscribing Alerts
+const api = {
+  key: '42a11fd3bfecf2a59e5faa5d5e9c5f94',
+  base: 'https://api.openweathermap.org/data/2.5/',
+};
+
+//
+
+/*
+function test (){
+	fetch(`https://api.openweathermap.org/data/2.5/weather?q=waterloo&units=metric&APPID=42a11fd3bfecf2a59e5faa5d5e9c5f94`)
+.then(res => res.json())
+.then(result => {
+  let min = result.main.temp_min;
+  let max = result.main.temp_max;
+  console.log("hello");
+})}
+
+*/
+
+cron.schedule('*/10 * * * * *', function () {
+  let alert_link =
+    'https://api.openweathermap.org/data/2.5/weather?q=waterloo&units=metric&APPID=42a11fd3bfecf2a59e5faa5d5e9c5f94';
+  Nodefetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=waterloo&units=metric&APPID=42a11fd3bfecf2a59e5faa5d5e9c5f94`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      let min = data.main.temp_min;
+      let max = Math.ceil(data.main.temp_max);
+      let temp = Math.ceil(data.main.temp);
+      let message =
+        'Hello, \nToday the minimum temperature will bet at ' +
+        min +
+        '°C and \nThe maximum temperature will be at ' +
+        max +
+        ' \nFor more details please clcik the below link \n' +
+        alert_link;
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'toshar109@gmail.com',
+          pass: 'dzzwiywmxbbmxvwq',
+        },
+      });
+
+      var mailOptions = {
+        from: 'youremail@gmail.com',
+        to: 'ajayignited@gmail.com',
+        subject: 'Alert Subscription',
+        text: message,
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent please check your email');
+        }
+      });
+    });
 });

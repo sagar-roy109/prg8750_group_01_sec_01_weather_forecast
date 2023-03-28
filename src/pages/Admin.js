@@ -34,7 +34,6 @@ function Admin() {
   return (
     <>
       <Header></Header>
-
       <Sidebar allPosts={allPosts} />
     </>
   );

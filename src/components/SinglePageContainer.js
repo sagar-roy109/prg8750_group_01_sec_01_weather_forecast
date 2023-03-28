@@ -5,7 +5,7 @@ function SinglePageContainer() {
   return (
     <>
       <div className='container single-post'>
-        <div className='row'>
+        <div className='myrow'>
           <SinglePost></SinglePost>
         </div>
       </div>

@@ -16,18 +16,43 @@
 				}
       }
     </script>
+
   </head>
   <body>
-    <h1><%= email%></h1>
-    <form action="" method="post">
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="password"
-      /><br />
+		<style>
+			.container{
+				background-color: rgb(21, 86, 207);
+				width: 80%;
+				margin: auto;
+				padding: 20px;
+				color: #fff;
+				text-align: center;
+			}
+			.btn{
+				border: none;
+				background-color: coral;
+				color: #fff;
+				padding: 10px;
+				margin-top: 10px;
 
-      <input type="submit" value="submit" />
-    </form>
+			}
+			.btn:hover{
+				cursor: pointer;
+			}
+		</style>
+		<div class="container">
+			<h2>Reset your password</h2>
+			<form action="" method="post">
+				<input
+					type="password"
+					name="password"
+					id="password"
+					placeholder="password"
+				/><br />
+
+				<input class="btn" type="submit" value="submit" />
+			</form>
+		</div>
+
   </body>
 </html>

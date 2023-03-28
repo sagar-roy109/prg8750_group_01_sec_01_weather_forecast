@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState , useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 
 function SearchTemp() {
 	const api = {
@@ -7,24 +9,22 @@ function SearchTemp() {
 	}
 	const [query, setQuery] = useState('');
     const [weather, setWeather] = useState('');
-
+	const [weather_graph,setGraphWeather] = useState('');
 
 
   useEffect(()=>{
-	
 	fetch("https://geolocation-db.com/json/a9e48c70-8b22-11ed-8d13-bd165d1291e3")
 	.then(res=>res.json())
 	.then(idDetails =>{
-		
-		 setQuery(idDetails.city);
 
-	})}
+	setQuery(idDetails.city);
 
-	,[])
+	})}, [])
 
+	console.log(query)
 
 	useEffect(()=>{
-	
+
 	fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
     .then(res => res.json())
     .then(result => {
@@ -32,22 +32,36 @@ function SearchTemp() {
       setWeather(result);
 
 	  console.log(result)
-      
-      
-  })}
+
+
+  })
+
+
+
+	}
 
 	, [query])
-
-
-
-
-
  const search = evt =>{
   if (evt.key === "Enter") {
+	setQuery(evt.target.value);
+	fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?unitGroup=metric&include=hours&key=EPHZ2R3BGFE2BPJJX9LU7MU52&contentType=json`)
+        .then(res => res.json())
+        .then(result => {
+          setGraphWeather(result);
+          
+          console.log(result);
+        });
 
-    setQuery(evt.target.value);
+
+    
+
+
+
   }
  }
+
+
+
 
 
  const dateBuilder = (d) => {
@@ -61,8 +75,6 @@ function SearchTemp() {
 
 	return `${day} ${date} ${month} ${year}`
 }
-
-
 	return (
 		<div className={(typeof weather.main != "undefined")? ((weather.main.temp>16)? 'app warm' : 'app'):'app'}>
 		<main>
@@ -72,7 +84,7 @@ function SearchTemp() {
 				className="search-bar"
 				placeholder="Search"
 				//onChange={e => setQuery(e.target.value)}
-				
+
 				onKeyPress={search}
 				/>
 			</div>
@@ -89,6 +101,7 @@ function SearchTemp() {
 			<p className='feels-like'>Feels Like: {Math.round(weather.main.feels_like)}℃</p>
 
 			</div>
+			<Link to="/graph" state={{ data: weather_graph }}>  15 day Weather Forecast</Link>
 		</div>
 		):('')}
 	</main>
@@ -96,4 +109,4 @@ function SearchTemp() {
 	)
 }
 
-export default SearchTemp
+export default SearchTemp;

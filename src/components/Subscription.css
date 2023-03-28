@@ -1,0 +1,45 @@
+.subscription-section {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .subscription-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .subscription-section form {
+    display: inline-block;
+  }
+  
+  .subscription-section label {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subscription-section .form-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .subscription-section input[type="email"] {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    flex: 1;
+  }
+  
+  .subscription-section button[type="submit"] {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  

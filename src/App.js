@@ -1,11 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Home from './pages/Home';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Blogs from './pages/Blogs';
 import Test from './pages/Test';
 import Single from './pages/Single';
+import Donate from './pages/Donate';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import UserDash from './pages/UserDash';
@@ -14,14 +14,10 @@ import Admin from './pages/Admin';
 import Dashboard from './pages/Dashboard';
 import Add from './pages/Add';
 import Delete from './pages/Delete';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
 import EditPost from './components/EditPost';
-
-const api = {
-  key: '42a11fd3bfecf2a59e5faa5d5e9c5f94',
-  base: 'https://api.openweathermap.org/data/2.5/',
-};
+import Graph from './pages/Graph';
+import Landing from './pages/Landing';
+import Footer from './components/Footer';
 
 function App() {
   const isLoggedIn = window.localStorage.getItem('loggedin');
@@ -32,7 +28,7 @@ function App() {
         <Route
           path='/user'
           element={
-            isLoggedIn == 'true' ? (
+            isLoggedIn === 'true' ? (
               <Dashboard />
             ) : (
               <Navigate replace to={'/login'} />
@@ -40,12 +36,12 @@ function App() {
           }
         />
       );
-    } else if (isLoggedIn == 'true' && admin == 'false') {
+    } else if (isLoggedIn === 'true' && admin === 'false') {
       return (
         <Route
           path='/user'
           element={
-            isLoggedIn == 'true' ? (
+            isLoggedIn === 'true' ? (
               <UserDash />
             ) : (
               <Navigate replace to={'/login'} />
@@ -59,11 +55,27 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Landing></Landing>} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/test' element={<Test />} />
         <Route path='/single-post' element={<Single />} />
+        <Route path='/donate' element={<Donate />} />
         <Route path='/single-post/:id' element={<Single />} />
+        <Route
+          path='/login'
+          element={
+            isLoggedIn !== 'true' ? (
+              <Login />
+            ) : (
+              <Navigate replace to={'/user'} />
+            )
+          }
+        />
+        <Route path='/register' element={<Register />} />
+        {/* <Route path='/user' element={UserPath} /> */}
+        {UserPath()}
+
+        <Route path='/reset' element={<Reset></Reset>} />
         <Route
           path='/login'
           element={
@@ -83,7 +95,9 @@ function App() {
         <Route path='/add' element={<Add />} />
         <Route path='/delete' element={<Delete />} />
         <Route path='/edit/:id' element={<EditPost />} />
+        <Route path='/graph' element={<Graph />} />
       </Routes>
+      <Footer></Footer>
     </>
   );
 }

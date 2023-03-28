@@ -2,7 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import Loginimg from '../assets/fall.jpg';
 
+
 function Login() {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -36,7 +38,8 @@ function Login() {
           window.location.href = '/user';
         }
       });
-  }
+    }
+    
 
   return (
     <section className='Form '>
@@ -52,12 +55,10 @@ function Login() {
               <div className='form-row'>
                 <div className='col-lg-7'>
                   <input
-                    name='email'
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    value={email}
-                    type={'email'}
+									name='email'
+									onChange={(e)=>{setEmail(e.target.value)}}
+									value={email}
+									type={'email'}
                     placeholder='Enter your email'
                     className='form-control my-3 p-2'
                   ></input>
@@ -66,9 +67,8 @@ function Login() {
               <div className='form-row'>
                 <div className='col-lg-7'>
                   <input
-                    name='password'
-                    value={password}
-                    type={'password'}
+									name='password'
+									value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -88,6 +88,7 @@ function Login() {
                   </button>
                 </div>
               </div>
+              <a href='/reset'>Forgot Password</a>
               <a href='/reset'>Forgot Password</a>
               <p>
                 New user? <a href='/register'>Register here</a>
