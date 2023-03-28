@@ -2,6 +2,8 @@ import { NavbarBrand } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Donate from './../pages/Donate';
+import Loginimg from '../assets/logofinal.png';
 import logo from '../assets/logo.svg'
 
 function Header() {
@@ -15,6 +17,9 @@ function Header() {
           <Nav className='me-auto'>
             <Nav.Link href='/'>Home</Nav.Link>
             <Nav.Link href='/blogs'>Blogs</Nav.Link>
+           
+            <Nav.Link href='/donate'>Donate</Nav.Link>
+
             <Nav.Link href='/test'>Test</Nav.Link>
             <Nav.Link href='/graph'>Graph</Nav.Link>
           </Nav>

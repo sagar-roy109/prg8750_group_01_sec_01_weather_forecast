@@ -13,7 +13,6 @@ function SearchTemp() {
 
 
   useEffect(()=>{
-
 	fetch("https://geolocation-db.com/json/a9e48c70-8b22-11ed-8d13-bd165d1291e3")
 	.then(res=>res.json())
 	.then(idDetails =>{
@@ -22,6 +21,7 @@ function SearchTemp() {
 
 	})}, [])
 
+	console.log(query)
 
 	useEffect(()=>{
 
@@ -41,11 +41,6 @@ function SearchTemp() {
 	}
 
 	, [query])
-
-
-
-
-
  const search = evt =>{
   if (evt.key === "Enter") {
 	setQuery(evt.target.value);
@@ -80,8 +75,6 @@ function SearchTemp() {
 
 	return `${day} ${date} ${month} ${year}`
 }
-
-
 	return (
 		<div className={(typeof weather.main != "undefined")? ((weather.main.temp>16)? 'app warm' : 'app'):'app'}>
 		<main>

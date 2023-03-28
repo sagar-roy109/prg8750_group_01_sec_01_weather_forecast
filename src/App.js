@@ -6,6 +6,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Blogs from './pages/Blogs';
 import Test from './pages/Test';
 import Single from './pages/Single';
+import Donate from './pages/Donate';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import UserDash from './pages/UserDash'
@@ -40,6 +41,10 @@ function App() {
         <Route path='/' element={<Landing></Landing>} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/test' element={<Test />} />
+				<Route path='/single-post' element={<Single />} />
+        <Route path='/donate' element={<Donate />} />
+        
+        
         <Route path='/single-post' element={<Single />} />
         <Route path='/login' element={isLoggedIn !== "true" ? <Login /> : <Navigate replace to={"/user"} />} />
         <Route path='/register' element={<Register />} />
