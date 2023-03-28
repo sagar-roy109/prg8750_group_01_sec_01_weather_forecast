@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-
+const citySchema = mongoose.Schema({
+	city:String
+})
 const userSchema =  new mongoose.Schema({
 	fname :String,
 	lname :String,
@@ -11,6 +13,9 @@ const userSchema =  new mongoose.Schema({
 	admin:{
 		type: Boolean,
 		default: false
+	},
+	cities:{
+		type: Array
 	}
 },
 {

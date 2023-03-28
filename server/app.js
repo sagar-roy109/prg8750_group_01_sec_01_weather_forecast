@@ -135,6 +135,8 @@ app.post('/forgot-password', async (req, res)=>{
 		const token = jwt.sign({email: oldUser.email, id:oldUser._id}, secret, {expiresIn: "5m"})
 		const link = `http://localhost:5001/reset-password/${oldUser._id}/${token}`;
 
+
+
 		// sent email
 		var transporter = nodemailer.createTransport({
       service: "gmail",
@@ -258,4 +260,23 @@ app.get('/post-delete/:id',async(req,res)=>{
 		console.log(err);
 		res.send({status:"error"});
 	}
+})
+
+
+
+// USER CITY MENU
+
+app.post('/add-city',(req, res)=>{
+	const {city, email} = req.body;
+
+
+		try{
+			const userEmail = email;
+			User.updateOne({email:userEmail},{$push:{cities:city}})
+			.then(data=>{
+				res.send({data:data, status:"ok"})
+			})
+		}catch(err){
+			console.log(err)
+		}
 })

@@ -18,6 +18,8 @@ import Delete from './pages/Delete';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Graph from './pages/Graph';
+import Landing from './pages/Landing';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -35,7 +37,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Landing></Landing>} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/test' element={<Test />} />
         <Route path='/single-post' element={<Single />} />
@@ -51,6 +53,7 @@ function App() {
         <Route path='/delete' element={<Delete />} />
         <Route path='/graph' element={<Graph />} />
       </Routes>
+			<Footer></Footer>
     </>
   );
 }

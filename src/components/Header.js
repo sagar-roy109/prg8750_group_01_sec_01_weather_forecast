@@ -2,14 +2,14 @@ import { NavbarBrand } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Loginimg from '../assets/logofinal.png';
+import logo from '../assets/logo.svg'
 
 function Header() {
   return (
     <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
       <Container>
-        <img src={Loginimg} width={50} height={40} alt='logo'></img>
-        <Navbar.Brand href='#home'>Weather Application</Navbar.Brand>
+        <img className='desk-logo' src={logo} width={300}  alt='logo'></img>
+
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'>
