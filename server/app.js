@@ -166,24 +166,33 @@ app.get('/reset-password/:id/:token', async (req, res) => {
   }
 });
 
-app.post('/reset-password/:id/:token', async (req, res) => {
-  const { id, token } = req.params;
-  const { password } = req.body;
-  const oldUser = await User.findOne({ _id: id });
-  if (!oldUser) {
-    return res.json({ status: 'User not exist' });
-  }
-  const secret = JWT_SECRET_KEY + oldUser.password;
-  try {
-    const verify = jwt.verify(token, secret);
-    const encpass = await bcrypt.hash(password, 10);
-    await User.updateOne({ _id: id }, { $set: { password: encpass } });
-    // res.send({status:"Password Updated"});
-    res.render('index', { email: verify.email, status: 'verified' });
-  } catch (err) {
-    res.send('Not verified');
-  }
-});
+
+app.post("/reset-password/:id/:token", async(req, res)=>{
+	const {id, token } = req.params;
+	const {password} =  req.body;
+	const oldUser = await User.findOne({_id:id});
+		if(!oldUser){
+			return res.json({status:"User not exist"});
+		}
+		const secret =  JWT_SECRET_KEY + oldUser.password;
+		try{
+		const verify = jwt.verify(token,secret);
+		const encpass = await bcrypt.hash(password,10);
+		await User.updateOne({_id:id}, {$set:{password:encpass}})
+		// res.send({status:"Password Updated"});
+		res.render("index", {email: verify.email, status:"verified"});
+		}catch(err){
+			res.send("Not verified");
+		}
+
+})
+
+
+
+
+
+
+
 /**** POST ADD FROM ADMIN */
 
 // add post
