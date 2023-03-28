@@ -20,6 +20,7 @@ import Header from './components/Header';
 import Graph from './pages/Graph';
 import Landing from './pages/Landing';
 import Footer from './components/Footer';
+import SearchTemp from './components/SearchTemp';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Landing></Landing>} />
+				<Route path='/application' element={<SearchTemp></SearchTemp>} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/test' element={<Test />} />
         <Route path='/single-post' element={<Single />} />

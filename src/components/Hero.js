@@ -3,6 +3,7 @@ import Banner from '../assets/banner-min.jpg'
 import weather from '../assets/weather.json'
 import Lottie from 'lottie-react'
 function Hero() {
+
 	return (
 		<div className="hero-section">
 			{/* <img src={Banner} alt="Banner Image for weather application" /> */}
