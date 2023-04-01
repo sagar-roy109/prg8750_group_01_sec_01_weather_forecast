@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect,  useRef } from "react";
 import Chart from "chart.js/auto";
 
-const WeatherBarChart = ({ data }) => {
-  
+const WeatherBarChart  = ({ data }) => {
   const chartContainer = useRef(null);
+ 
 
   useEffect(() => {
     if (data && data.days) {
       const chartConfig = {
-        type: "bar",
+        type: "line",
         data: {
           labels: data.days.map((day) => day.datetime),
           datasets: [
@@ -19,13 +19,14 @@ const WeatherBarChart = ({ data }) => {
               borderColor: "rgba(255, 99, 132, 1)",
               borderWidth: 1,
             },
-            
+
             {
               label: "Temperature (°C)",
               data: data.days.map((day) => day.temp),
               backgroundColor: "rgba(255, 206, 86, 0.2)",
               borderColor: "rgba(255, 206, 86, 1)",
               borderWidth: 1,
+              
             },
 
             {
@@ -47,8 +48,8 @@ const WeatherBarChart = ({ data }) => {
               display: true,
               text: "Temperature Forecast",
               font: {
-                size: 24
-              }
+                size: 24,
+              },
             },
           },
           scales: {
@@ -80,4 +81,3 @@ const WeatherBarChart = ({ data }) => {
 };
 
 export default WeatherBarChart;
-
