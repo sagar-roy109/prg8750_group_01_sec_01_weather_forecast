@@ -1,33 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const AllPostTable = (props) => {
-	const title = props.posts.title;
-	const id = props.posts._id;
-	// console.log(id);
+  const title = props.posts.title;
+  const img = props.posts.img;
+  const posttype = props.posts.posttype;
+  const id = props.posts._id;
+  const [image, setImage] = useState(null);
 
-	// const deleteData = (id)=> {
-	// 	fetch(`http://localhost:5001/post-delete/:${id}`)
-	// 	.then(res=>res.json())
-	// 	.then(data => console.log(data));
-	// }
-	return (
-		<>
+  useEffect(() => {
+    const imgElement = new Image();
+    imgElement.src = img;
+    imgElement.onload = () => {
+      setImage(imgElement.src);
+    };
+  }, [img]);
 
-				<tr>
-					<td>1</td>
-					<td>{title}</td>
-					<td>date</td>
-					<td>Title</td>
-					<td>type</td>
-					<td>
-					<a className='btn btn-primary'>Edit</a>
-					<a className='btn btn-danger' >Delete</a>
+  async function handleDelete(id) {
+    //e.preventDefault();
 
-					</td>
-				</tr>
-		</>
-	)
-}
+    fetch(`http://localhost:5001/post-delete/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.status);
+      });
+  }
 
-export default AllPostTable
+  return (
+    <>
+      <tr>
+        <td>{id}</td>
+        <td>{image && <img src={image} alt={title} />}</td>
+        <td>{title}</td>
+        <td>{posttype}</td>
+        <td>
+          <button>
+            <a className='btn btn-primary' href={`/edit/${id}`}>
+              Edit
+            </a>
+          </button>
+        </td>
+        <td>
+          <button className='btn btn-danger' onClick={() => handleDelete(id)}>
+            Delete
+          </button>
+        </td>
+      </tr>
+    </>
+  );
+};
+
+export default AllPostTable;
