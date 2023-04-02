@@ -6,38 +6,13 @@ function SearchTemp() {
    
     const [query, setQuery] = useState('');
     const [weather, setWeather] = useState('');
-	const [weather_graph,setGraphWeather] = useState('');
-
-
-  useEffect(()=>{
-	fetch("https://geolocation-db.com/json/a9e48c70-8b22-11ed-8d13-bd165d1291e3")
-	.then(res=>res.json())
-	.then(idDetails =>{
-
-	setQuery(idDetails.city);
-
-	})}, [])
-
-	console.log(query)
-
-	useEffect(()=>{
-
-	fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-    .then(res => res.json())
-    .then(result => {
-
-      setWeather(result);
-
-	  console.log(result)
-
-
-  })
 
 
 
-	}
+  
 
-	, [query])
+
+	
  const search = evt =>{
   if (evt.key === "Enter") {
     setQuery(evt.target.value);
@@ -47,9 +22,6 @@ function SearchTemp() {
           setWeather(result);
           console.log(result);
         });
-
-    
-
 
   }
  }
