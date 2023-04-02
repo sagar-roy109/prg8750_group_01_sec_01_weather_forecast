@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import cityName from '../components/Inputs'
 import Topbuttons from '../components/Topbuttons';
 import Inputs from '../components/Inputs';
@@ -14,13 +15,10 @@ import { useState, useEffect } from 'react';
 
 const Test = () => {
 
-
-
-
-
 const [query, setQuery] = useState({q:''})  
 const [units, setUnits] = useState('metric')
 const [weather, setWeather] = useState(null)
+const [graphweather,setgraphweather] = useState('');
 
 
 
@@ -47,12 +45,22 @@ useEffect(()=>{
       });
   }, []);
 
-    
 
-
-
-
+  useEffect(() => {
+    console.log(query.q);
+    fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query.q}?unitGroup=metric&include=hours&key=EPHZ2R3BGFE2BPJJX9LU7MU52&contentType=json`)
+      .then(response => response.json())
+      .then(data => {
+        setgraphweather(data);
+        console.log("graphdata",data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [query.q]);
+ 
 const formatBackground = () => {
+  console.log(weather);
   if(!weather) return "from-cyan-700 to-blue-700";
   const threshold = units === 'metric' ? 20 : 60;
   if(weather.temp <= threshold) return "from-cyan-700 to-blue-700";
@@ -76,7 +84,14 @@ const formatBackground = () => {
             <TemparatureAndDetails weather = {weather}/>
 
             <Forecast title='hourly forecast' items={weather.hourly} />
+ 
             <Forecast title='daily forecast' items={weather.daily} />
+            <Link to="/graph" state={{ data: graphweather }}>
+            <button className="px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
+              View 15 Day Weather Forecast Graph
+            </button>
+            </Link>
+
           </div>
         )}
         
