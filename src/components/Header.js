@@ -10,7 +10,10 @@ function Header() {
   return (
     <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
       <Container>
-        <img className='desk-logo' src={logo} width={300} alt='logo'></img>
+				<a href="/">
+				<img className='desk-logo' src={logo} width={300}  alt='logo'></img>
+				</a>
+
 
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
