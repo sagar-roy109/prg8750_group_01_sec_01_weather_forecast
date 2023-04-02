@@ -20,6 +20,7 @@
     "carousel-react-rcdev": "^0.0.5",
     "chart.js": "^4.2.1",
     "cors": "^2.8.5",
+    "draft-js": "^0.11.7",
     "express": "^4.18.2",
     "firebase": "^9.18.0",
     "lottie-react": "^2.4.0",
