@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
-import Header from '../components/Header'
-
+import Header from '../components/Header';
 
 function UserDash() {
   const history = useNavigate();
   const [userData, setUserData] = useState({});
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState('');
   const logout = () => {
     window.localStorage.clear();
-    window.location.href = "/login";
+    window.location.href = '/login';
   };
 
   const addCity = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5001/add-city", {
-      method: "POST",
+    fetch('http://localhost:5001/add-city', {
+      method: 'POST',
       crossDomain: true,
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
         city,
@@ -37,16 +36,16 @@ function UserDash() {
       });
   };
   useEffect(() => {
-    fetch("http://localhost:5001/user-details", {
-      method: "POST",
+    fetch('http://localhost:5001/user-details', {
+      method: 'POST',
       crossDomain: true,
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
+        token: window.localStorage.getItem('token'),
       }),
     })
       .then((res) => res.json())
@@ -57,50 +56,50 @@ function UserDash() {
 
   return (
     <>
-		<Header></Header>
-      <div className="container user-dashboard">
-				<div className="row">
-				<h1 className="text-center">Welcome to Dashboard</h1>
-        <h5>User Details</h5>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{userData.fname}</td>
-              <td>{userData.lname}</td>
-              <td>{userData.email}</td>
-              <td>
-                <button onClick={logout} className="btn btn-primary">
-                  Log Out
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-        <h5>Add your favourite city</h5>
+      <Header></Header>
+      <div className='container user-dashboard'>
+        <div className='row'>
+          <h1 className='text-center'>Welcome to Dashboard</h1>
+          <h5>User Details</h5>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{userData.fname}</td>
+                <td>{userData.lname}</td>
+                <td>{userData.email}</td>
+                <td>
+                  <button onClick={logout} className='btn btn-primary'>
+                    Log Out
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          <h5>Add your favourite city</h5>
 
-        <Form onSubmit={addCity}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>City Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Add your favourite city"
-              onChange={(e) => setCity(e.target.value)}
-            />
-          </Form.Group>
+          <Form onSubmit={addCity}>
+            <Form.Group className='mb-3' controlId='formBasicEmail'>
+              <Form.Label>City Name</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Add your favourite city'
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-				</div>
+            <Button variant='primary' type='submit'>
+              Submit
+            </Button>
+          </Form>
+        </div>
       </div>
     </>
   );

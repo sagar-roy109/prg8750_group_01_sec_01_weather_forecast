@@ -1,137 +1,119 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
+import { Editor } from 'react-draft-wysiwyg';
 
 function Add() {
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const form = document.forms.addPostForm;
-  //   const addPost = {
-  //     img: form.img.value,
-  //     DOP: form.DOP.value,
-  //     title: form.title.value,
-  //     posttype: form.posttype.value,
-  //   };
-  //   const query = ` mutation Mutation { createPost(  img:"${addPost.img}", DOP:"${addPost.DOP}",
-  //           title: "${addPost.title}",
-  //           posttype: "${addPost.posttype}"
-  //           ) {
-  //               id
-  //               img
-  //               DOP
-  //               title
-  //               posttype
+  const [title, setTitle] = useState('');
+  const [img, setImg] = useState('');
+  const [posttype, setPosttype] = useState('');
 
-  //           }}`;
-  //   console.log(query);
-  //   fetch('http://localhost:4000/graphql', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ query }),
-  //   }).then(async function (response) {
-  //     const body = response.json();
-  //     console.log(body);
-  //     window.location.replace('/dashboard');
-  //   });
-  // };
+  const addPost = (e) => {
+    e.preventDefault();
 
-	const [title, setTitle] =  useState('');
-const addPost =(e)=>{
-	e.preventDefault();
+    fetch('http://localhost:5001/add-post', {
+      method: 'POST',
+      crossDomain: true,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({
+        base64: img,
+        title,
+        posttype,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log(data.status);
+        window.location.replace('/user');
+        //toast(data.status);
+      });
 
-		fetch("http://localhost:5001/add-post",{
-			method: "POST",
-			crossDomain: true,
-			headers:{
-				"Content-Type":"application/json",
-				Accept:"application/json",
-				"Access-Control-Allow-Origin":"*"
-			},
-			body:JSON.stringify({
-				title
-			}),
-
-		}).then(res=>res.json())
-		.then(data =>{
-			console.log(data.status);
-			// toast(data.status);
-
-		})
-
-
-	console.log('test');
-}
-
+    console.log('posted');
+  };
+  function converttoBase64(e) {
+    console.log(e);
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      console.log(reader.result);
+      setImg(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.log('error:', error);
+    };
+  }
   return (
-    <Sidebar>
-      {/* <Form name='addPostForm' onSubmit={handleSubmit} className='round'>
-        <div className='form-group'>
-          <Form.Label htmlFor='img' className='form-label mt-4'>
-            Image Name
-          </Form.Label>
-          <Form.Control
-            type='text'
-            className='form-control'
-            id='img'
-            name='img'
-            placeholder='Enter Image Name'
-            required
-          />
-        </div>
+    <div>
+      <Header></Header>
+      <Sidebar>
+        {
+          <div className='addstyle'>
+            <form
+              onSubmit={addPost}
+              encType='multipart/form-data'
+              className='form-outline mb-4'
+            >
+              <div class='form-group'>
+                <Form.Label htmlFor='title' className='form-label mt-4'>
+                  Title
+                </Form.Label>{' '}
+                <input
+                  type='text'
+                  className='form-control'
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                  }}
+                />
+              </div>
+              <div class='form-group'>
+                <Form.Label htmlFor='posttype' className='form-label mt-4'>
+                  Post Description:
+                </Form.Label>
+                <textarea
+                  type='text'
+                  className='form-control'
+                  cols='50'
+                  rows='6'
+                  onChange={(e) => setPosttype(e.target.value)}
+                />
+              </div>
+              <div class='form-group'>
+                <Form.Label htmlFor='img' className='form-label mt-4'>
+                  Img
+                </Form.Label>
+                <input
+                  type='file'
+                  filename='img'
+                  accept='image/jpeg,image/png,image/gif'
+                  className='form-control'
+                  /*onChange={(e) => {
+                  setImg(e.target.filename);
+                  console.log(img); // add this line*/
+                  onChange={converttoBase64}
+                />
+                {img === '' || img == null ? (
+                  ''
+                ) : (
+                  <img width={100} height={100} src={img} alt='article' />
+                )}
+              </div>
 
-        <div className='form-group'>
-          <Form.Label htmlFor='dateofpost' className='form-label mt-4'>
-            Date Of Post
-          </Form.Label>
-          <Form.Control
-            type='date'
-            className='form-control'
-            id='dop'
-            name='DOP'
-            required
-          />
-        </div>
-        <div className='form-group'>
-          <Form.Label htmlFor='title' className='form-label mt-4'>
-            Post Title
-          </Form.Label>
-          <Form.Control
-            type='text'
-            className='form-control'
-            id='title'
-            name='title'
-            placeholder='Enter Post title'
-            required
-          />
-        </div>
-        <div className='form-group'>
-          <Form.Label htmlFor='posttype' className='form-label mt-4'>
-            Post Type
-          </Form.Label>
-          <Form.Control
-            type='text'
-            className='form-control'
-            id='posttype'
-            name='posttype'
-            placeholder='Enter Post Type'
-            required
-          />
-        </div>
-
-        <Button
-          variant='secondary'
-          type='submit'
-          className='btn btn-primary addpost btnadd'
-        >
-          Add Post
-        </Button>
-      </Form> */}
-
-			<form onSubmit={addPost}>
-				<input type="text" onChange={(e)=>setTitle(e.target.value)}/>
-				<button >Submit</button>
-			</form>
-    </Sidebar>
+              <div class='form-check d-flex justify-content-center mb-4'>
+                <button type='submit' className='btn btn-primary'>
+                  Add Post
+                </button>
+              </div>
+            </form>
+          </div>
+        }
+      </Sidebar>
+    </div>
   );
 }
 
