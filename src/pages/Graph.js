@@ -6,8 +6,6 @@ import Header from '../components/Header';
 const Graph = () => {
   const location = useLocation();
   const { data } = location.state || {}; // update to access the data property
-
-  console.log('inside graph');
   console.log(data);
 
   return (
