@@ -15,7 +15,7 @@ import { useState, useEffect } from 'react';
 
 const Test = () => {
 
-const [query, setQuery] = useState({q:''})  
+const [query, setQuery] = useState({q:''})
 const [units, setUnits] = useState('metric')
 const [weather, setWeather] = useState(null)
 const [graphweather,setgraphweather] = useState('');
@@ -58,7 +58,7 @@ useEffect(()=>{
         console.error(error);
       });
   }, [query.q]);
- 
+
 const formatBackground = () => {
   console.log(weather);
   if(!weather) return "from-cyan-700 to-blue-700";
@@ -75,30 +75,31 @@ const formatBackground = () => {
         <Header></Header>
       </div>
 
-      <div className={`mx-auto max-w-screen-xl mt-4 py-5 px-32 bg-gradient-to-br h-fit shadow-xl shadow-gray-400  ${formatBackground()}` }>
+      <div className={`mx-auto max-w-screen-xl  py-5 px-32 bg-gradient-to-br h-fit shadow-xl shadow-gray-400  ${formatBackground()}` }>
         <Topbuttons setQuery = {setQuery}/>
         <Inputs setQuery = {setQuery} units={units} setUnits={setUnits}/>
         {weather && (
-          <div>
+          <div className = "graph-container">
             <TimeAndlocation  weather = {weather}/>
             <TemparatureAndDetails weather = {weather}/>
 
             <Forecast title='hourly forecast' items={weather.hourly} />
- 
+
             <Forecast title='daily forecast' items={weather.daily} />
-            <Link to="/graph" state={{ data: graphweather }}>
-            <button className="px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
+            <Link to="/graph" className='details-button-link' state={{ data: graphweather }}>
+							<div className="details-button">
+							<button className="px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
               View 15 Day Weather Forecast Graph
             </button>
+							</div>
+
             </Link>
 
           </div>
         )}
-        
+
       </div>
-      <div>
-        <SubscriptionSection></SubscriptionSection>
-      </div>
+
     </div>
   );
 };

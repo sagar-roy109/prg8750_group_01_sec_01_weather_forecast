@@ -21,9 +21,9 @@ import Header from './components/Header';
 import Graph from './pages/Graph';
 import Landing from './pages/Landing';
 import Footer from './components/Footer';
-import EditPost from './components/EditPost';
 import SearchTemp from './components/SearchTemp';
 
+import EditPost from './components/EditPost';
 
 function App() {
   const isLoggedIn = window.localStorage.getItem('loggedin');
@@ -62,7 +62,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Landing></Landing>} />
-				<Route path='/application' element={<SearchTemp></SearchTemp>} />
+				<Route path='/application' element={<Test/>} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/test' element={<Test />} />
         <Route path='/single-post' element={<Single />} />

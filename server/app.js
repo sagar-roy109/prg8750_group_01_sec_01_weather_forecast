@@ -350,3 +350,28 @@ cron.schedule('*/10 * * * * *', function () {
       });
     });
 });
+
+
+/** GET CITY LIST */
+
+// app.post('/get-user-city', async (req,res)=>{
+// 	const { token } = req.body;
+
+//   try {
+//     const user = jwt.verify(token, JWT_SECRET_KEY, (err, res) => {
+//       if (err) {
+//         return 'Token Expired';
+//       }
+//       return res;
+//     });
+
+//     const userEmail = user.email;
+//     User.findOne({
+//       email: userEmail,
+//     }).then((data) => {
+//       res.send({ data: data, status: 'ok' });
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// })

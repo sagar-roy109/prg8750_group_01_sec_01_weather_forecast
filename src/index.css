@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 }
 
@@ -16,7 +16,7 @@
 }
 
 body {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background: #fff;
   /* background-image: url('./assets/fall.jpg'); */
   background-position: cover;
@@ -27,7 +27,7 @@ body {
 }
 
 .app {
-  background-image: url('./assets/cold.jpg');
+  background-image: url("./assets/cold.jpg");
   background-size: cover;
   background-position: bottom;
   transition: 0.4 ease;
@@ -35,11 +35,11 @@ body {
 
 /* Image for summer*/
 .app.warm {
-  background-image: url('./assets/hot.jpg');
+  background-image: url("./assets/hot.jpg");
 }
 
 .app.rain {
-  background-image: url('./assets/wet.jpg');
+  background-image: url("./assets/wet.jpg");
 }
 
 main {
@@ -370,8 +370,8 @@ Payment Gateway
   padding: 2rem;
 }
 
-.charts-container {
-  display: flex;
+/* .charts-container {
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -379,7 +379,7 @@ Payment Gateway
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 
 @media only screen and (min-width: 768px) {
   .charts-container {
@@ -427,7 +427,7 @@ Payment Gateway
 .hero-section .title {
   font-size: 50px;
   text-transform: uppercase;
-  font-family: 'poppins';
+  font-family: "poppins";
   font-weight: bold;
   line-height: 1.5em;
 }
@@ -487,7 +487,7 @@ footer a {
 }
 
 .subscribe-section form {
-  width: 44%;
+  width: 47%;
   margin: 0 auto !important;
   align-items: center;
 }
@@ -587,51 +587,47 @@ footer a {
   pointer-events: none;
 }
 
-.Graphheader{
-  
-    color:#72bee6;
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    text-align: center;
-    text-transform: capitalize;
-  
-  
+.Graphheader {
+  color: #72bee6;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+  text-transform: capitalize;
 }
 
-.pfdbutton{
-  display:inline-block;
-  padding:0.3em 1.2em;
-  margin:0 0 0 0;
-  border:0.16em solid rgba(255,255,255,0);
-  background-color:#9a4ef1;
-  border-radius:2em;
+.pfdbutton {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0 0 0;
+  border: 0.16em solid rgba(255, 255, 255, 0);
+  background-color: #9a4ef1;
+  border-radius: 2em;
   box-sizing: border-box;
-  text-decoration:none;
-  font-family:'Roboto',sans-serif;
-  font-weight:200;
-  color:#FFFFFF;
-  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-  text-align:center;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  color: #ffffff;
+  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+  text-align: center;
   transition: all 0.2s;
+}
+.pfdbutton:hover {
+  border-color: rgba(255, 255, 255, 1);
+}
+@media all and (max-width: 30em) {
+  .pfdbutton {
+    display: block;
+    margin: 0.2em auto;
   }
-  .pfdbutton:hover{
-  border-color: rgba(255,255,255,1);
-  }
-  @media all and (max-width:30em){
-  .pfdbutton{
-  display:block;
-  margin:0.2em auto;
-   }
-  }
+}
 
 @media (min-width: 768px) {
   .Graphheader {
     font-size: 2.5rem;
     margin-top: 4rem;
     color: #72bee6;
-    
   }
 }
 
@@ -666,7 +662,7 @@ footer a {
   padding: 2rem;
 }
 
-.charts-container {
+/* .charts-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -675,6 +671,15 @@ footer a {
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+.charts-container button{
+	display: block;
+	margin: auto;
+}
+.nav-link:focus, .nav-link:hover {
+
+	 color: #ffbf05 !important;
 }
 
 @media only screen and (min-width: 768px) {
@@ -723,7 +728,7 @@ footer a {
 .hero-section .title {
   font-size: 50px;
   text-transform: uppercase;
-  font-family: 'poppins';
+  font-family: "poppins";
   font-weight: bold;
   line-height: 1.5em;
 }
@@ -764,7 +769,7 @@ footer ul li {
 }
 footer a {
   padding: 0 10px;
-  font-size: 20px;
+  font-size: 10px;
   color: #fff;
   background-color: #03b8ff;
   padding: 10px;
@@ -782,18 +787,19 @@ footer a {
   background-color: #5323b4cf;
 }
 
-.subscribe-section form {
+/* .subscribe-section form {
   width: 44%;
   margin: 0 auto !important;
   align-items: center;
-}
+} */
 
 .subscribe-section button {
-  background-color: #03b8ff;
-  border: none;
-  padding: 5px 10px;
-  height: 50px;
-  margin: 0 !important;
+	background-color: #03b8ff;
+	border: none;
+	padding: 0px 9px;
+	height: 39px;
+	margin-top: 14px !important;
+	display: block;
 }
 .subscribe-section .lottie {
   width: 10%;
@@ -939,4 +945,45 @@ footer a {
 .card-title,
 .card-text {
   text-decoration: none;
+}
+
+
+@media all and (max-width:991px){
+	.navbar .logo{
+		width: 200px;
+	}
+}
+
+.blog-container a {
+	text-decoration: none;
+	color: #000;
+}
+
+
+.card-group.card-group {
+	min-height: 400px;
+
+}
+
+.card.card {
+	border-color: #a800ff !important;
+}
+
+.container.blog-container {
+	padding: 50px 0;
+}
+
+.details-button{
+	display: flex;
+	justify-content: center;
+	padding: 40px 0;
+}
+
+.details-button-link {
+	text-decoration: none;
+}
+
+
+.reset-from{
+	padding: 50px 0;
 }

@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import registerimg from '../assets/loginfinal.jpg';
+import weather from '../assets/weather.json'
+import Lottie from 'lottie-react'
 
 function Login() {
 
@@ -42,7 +44,7 @@ function Login() {
       <div className='container my-7 mx-7'>
         <div className='row no-gutters'>
           <div className='col-lg-5 px-4 py-4'>
-            <img src={registerimg} className='img-fluid' alt='logo'></img>
+					<Lottie className="lottie" animationData={weather}></Lottie>
           </div>
           <div className='col-lg-7 px-5 pt-4 '>
             <h1 className='font-weight-bold py-3'> Welcome, Register here!</h1>

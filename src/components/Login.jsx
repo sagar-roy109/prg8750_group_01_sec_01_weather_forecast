@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import Loginimg from '../assets/fall.jpg';
+import weather from '../assets/weather.json'
+import Lottie from 'lottie-react'
 
 
 function Login() {
@@ -49,7 +51,7 @@ function Login() {
       <div className='container py-6 my-7 mx-7'>
         <div className='row no-gutters'>
           <div className='col-lg-5 px-5 py-5'>
-            <img src={Loginimg} className='img-fluid' alt='logo'></img>
+					<Lottie className="lottie" animationData={weather}></Lottie>
           </div>
           <div className='col-lg-7 px-5 pt-7'>
             <h1 className='font-weight-bold py-3'> Welcome Back!</h1>

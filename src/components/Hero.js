@@ -12,7 +12,7 @@ function Hero() {
 				<div className="row">
 				<div className="col-md-8 col-sm-12">
 						<h1 className='title'>From SNow to sunshine, We've got it all</h1>
-						<a href="/application" className="button">Try Now</a>
+						<a href="/application" className="button">View Now</a>
 				</div>
 				<div className="col-md-4 col-sm-12">
 					<div className="lottie">
