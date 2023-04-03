@@ -51,6 +51,7 @@ function UserDash() {
       .then((res) => res.json())
       .then((data) => {
         setUserData(data.data);
+				console.log(data.data)
       });
   }, []);
 

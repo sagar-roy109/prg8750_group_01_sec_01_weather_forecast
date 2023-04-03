@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import Loginimg from '../assets/fall.jpg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import weather from '../assets/weather.json'
+import Lottie from 'lottie-react'
+
 
 
 function ResetComponent() {
@@ -42,7 +45,7 @@ function ResetComponent() {
       <div className='container '>
         <div className='row '>
           <div className='col-md-4'>
-            <img src={Loginimg} className='img-fluid' alt='logo'></img>
+					<Lottie className="lottie" animationData={weather}></Lottie>
           </div>
           <div className='col-md-8'>
             <h1 className='font-weight-bold py-3'> Welcome Back!</h1>
