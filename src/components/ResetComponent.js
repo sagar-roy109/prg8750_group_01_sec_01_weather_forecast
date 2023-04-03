@@ -38,13 +38,13 @@ function ResetComponent() {
 
 
   return (
-    <section className='Form my-4 mx-5'>
-      <div className='container my-4 mx-5'>
+    <section className='Form  reset-from'>
+      <div className='container '>
         <div className='row '>
-          <div className='col-lg-5 px-5 pt-5'>
+          <div className='col-md-4'>
             <img src={Loginimg} className='img-fluid' alt='logo'></img>
           </div>
-          <div className='col-lg-7 px-5 pt-4'>
+          <div className='col-md-8'>
             <h1 className='font-weight-bold py-3'> Welcome Back!</h1>
             <h2>Reset Your Password</h2>
             <form>
