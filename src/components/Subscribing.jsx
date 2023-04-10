@@ -17,7 +17,7 @@ function SubscriptionSection() {
         <p>Thank you for subscribing!</p>
       ) : (
         <form onSubmit={handleSubscribe}>
-          <label htmlFor="email">Email Address:</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"

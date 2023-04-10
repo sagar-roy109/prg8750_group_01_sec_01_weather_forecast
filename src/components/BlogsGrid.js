@@ -21,7 +21,7 @@ function BlogGrid(props) {
     <a href={`/single-post/${id}`}>
       <CardGroup className='card-group'>
         <Card className='card'>
-          <Card.Img variant='top' src={img} />
+          <Card.Img variant='top' src={img} alt = "Blog image" />
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Card.Text>{posttype}</Card.Text>

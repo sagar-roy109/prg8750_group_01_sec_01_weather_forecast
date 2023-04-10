@@ -323,7 +323,7 @@ Payment Gateway
 }
 
 .Graphheader {
-  color: #0077be;
+  color: rgb(5 40 184);
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 2rem;
@@ -436,7 +436,7 @@ Payment Gateway
   text-decoration: none;
   color: #fff;
   text-transform: uppercase;
-  background-color: #03acee;
+  background-color: #0355ff;
   padding: 8px 20px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -493,7 +493,7 @@ footer a {
 }
 
 .subscribe-section button {
-  background-color: #03b8ff;
+  background-color: #0355ff;
   border: none;
   padding: 5px 10px;
   height: 50px;
@@ -588,7 +588,7 @@ footer a {
 }
 
 .Graphheader {
-  color: #72bee6;
+
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 2rem;
@@ -602,7 +602,7 @@ footer a {
   padding: 0.3em 1.2em;
   margin: 0 0 0 0;
   border: 0.16em solid rgba(255, 255, 255, 0);
-  background-color: #9a4ef1;
+  background-color: #7700ff !important;
   border-radius: 2em;
   box-sizing: border-box;
   text-decoration: none;
@@ -627,7 +627,7 @@ footer a {
   .Graphheader {
     font-size: 2.5rem;
     margin-top: 4rem;
-    color: #72bee6;
+
   }
 }
 
@@ -737,7 +737,7 @@ footer a {
   text-decoration: none;
   color: #fff;
   text-transform: uppercase;
-  background-color: #03acee;
+  background-color: #0355ff;
   padding: 8px 20px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -794,7 +794,7 @@ footer a {
 } */
 
 .subscribe-section button {
-	background-color: #03b8ff;
+	background-color: #0355ff;
 	border: none;
 	padding: 0px 9px;
 	height: 39px;
@@ -819,7 +819,7 @@ footer a {
 .features-container .button {
   text-decoration: none;
   color: #fff;
-  background-color: #03b8ff;
+  background-color: #0355ff;
   padding: 10px 20px;
   font-size: 20px;
   display: inline-block;
@@ -977,6 +977,10 @@ footer a {
 	display: flex;
 	justify-content: center;
 	padding: 40px 0;
+
+}
+.details-button .button{
+	background-color: #0355ff !important;
 }
 
 .details-button-link {
