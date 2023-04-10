@@ -17,12 +17,12 @@ const Subscribe = () => {
 					<div className="row">
 						<form className="form-inline d-flex justify-content-between ">
 							<div className="form-group mb-2">
-								<label for="staticEmail2" >Email</label>
-								<input type="text" className="form-control"  />
+								<label for="email" >Email</label>
+								<input type="text" className="form-control" id="email" />
 							</div>
 							<div className="form-group  mb-2">
-								<label for="inputPassword2">City</label>
-								<input type="text" className="form-control"  />
+								<label for="city">City</label>
+								<input type="text" className="form-control" id="city"  />
 							</div>
 
 							<button type="submit" className="btn btn-primary mb-2">Subscribe</button>

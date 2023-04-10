@@ -77,7 +77,8 @@ const formatBackground = () => {
 
       <div className={`mx-auto max-w-screen-xl  py-5 px-32 bg-gradient-to-br h-fit shadow-xl shadow-gray-400  ${formatBackground()}` }>
         <Topbuttons setQuery = {setQuery}/>
-        <Inputs setQuery = {setQuery} units={units} setUnits={setUnits}/>
+
+        <Inputs  setQuery = {setQuery} units={units} setUnits={setUnits}/>
         {weather && (
           <div className = "graph-container">
             <TimeAndlocation  weather = {weather}/>
@@ -88,7 +89,7 @@ const formatBackground = () => {
             <Forecast title='daily forecast' items={weather.daily} />
             <Link to="/graph" className='details-button-link' state={{ data: graphweather }}>
 							<div className="details-button">
-							<button className="px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
+							<button className="px-4 py-2 rounded-md text-white">
               View 15 Day Weather Forecast Graph
             </button>
 							</div>

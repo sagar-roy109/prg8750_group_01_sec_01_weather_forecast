@@ -18,7 +18,7 @@ function Inputs({setQuery, units, setUnits}) {
   }, []);
 
     console.log(place);
-  
+
 
 
 
@@ -47,6 +47,7 @@ function Inputs({setQuery, units, setUnits}) {
           placeholder='search for city...'
           className='text-xl font-light p-2 w-full shadow-lg focus:outline-none capitalize placeholder:lowercase'
           onKeyPress={handleSearchClick}
+					title="search for city"
         />
         <UilSearch
           size={25}
@@ -54,7 +55,7 @@ function Inputs({setQuery, units, setUnits}) {
         onClick={handleSearchClick}
         //onKeyPress={handleSearchClick}
         />
-       
+
       </div>
       <div className='flex flex-row w-1/4 items-center justify-center'>
         <button name='metric' className='text-xl text-white font-light transition ease-out hover:scale-125'
