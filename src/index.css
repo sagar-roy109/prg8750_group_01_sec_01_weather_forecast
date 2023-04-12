@@ -991,3 +991,16 @@ footer a {
 .reset-from{
 	padding: 50px 0;
 }
+
+
+.navbar-nav a{
+	color: #fff;
+	text-decoration: none;
+	padding-right: 10px;
+}
+
+.navbar-nav a:hover{
+	color: #ffa600;
+
+}
+

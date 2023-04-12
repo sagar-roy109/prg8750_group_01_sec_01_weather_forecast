@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Donate from './../pages/Donate';
 import Loginimg from '../assets/logofinal.png';
 import logo from '../assets/logo.svg';
+import { Link } from "react-router-dom";
 
 function Header() {
 	const isLoggedIn = window.localStorage.getItem('loggedin');
@@ -34,10 +35,10 @@ function Header() {
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'>
-            <Nav.Link href='/'>Home</Nav.Link>
-						<Nav.Link href='/application'>Forcast</Nav.Link>
-            <Nav.Link href='/blogs'>Blogs</Nav.Link>
-            <Nav.Link href='/donate'>Donate</Nav.Link>
+            <Link to='/'>Home</Link>
+						<Link to='/application'>Forcast</Link>
+            <Link to='/blogs'>Blogs</Link>
+            <Link to='/donate'>Donate</Link>
           </Nav>
 
           {/* <Nav>
