@@ -41,7 +41,7 @@
     "react-icons": "^4.8.0",
     "react-paypal-button-v2": "^2.6.3",
     "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.9.0",
+    "react-router-dom": "^6.10.0",
     "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.1",
     "readdirp": "^3.6.0",
@@ -59,6 +59,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postinstall": "npm install",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
