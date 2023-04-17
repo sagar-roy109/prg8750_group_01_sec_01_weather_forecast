@@ -9,9 +9,10 @@ function SinglePost() {
   const parts = path.split('/');
   const id = parts[parts.length - 1];
   console.log(id);
+	const URL = process.env.REACT_APP_WEBSITE_URL
 
   useEffect(() => {
-    fetch(`http://localhost:5001/single-post/${id}`)
+    fetch(`${URL}/single-post/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.posts);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+const URL = process.env.REACT_APP_WEBSITE_URL;
 
 function PostTable(props) {
   const [data, setData] = useState(props.data);
@@ -6,7 +7,7 @@ function PostTable(props) {
   async function handleDelete(id) {
     //e.preventDefault();
 
-    fetch('http://localhost:5001/post-delete')
+    fetch(`${URL}/post-delete`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.status);

@@ -8,14 +8,21 @@ import Lottie from 'lottie-react'
 
 
 
+
+
+
 function ResetComponent() {
+	console.log(process.env.REACT_APP_WEBSITE_URL);
+
+	const URL = process.env.REACT_APP_WEBSITE_URL+'/forgot-password';
+	console.log(URL)
 
 	const [email, setEmail] = useState('');
 	// const [password, setPassword] = useState('');
 
 	async function submit(e){
 		e.preventDefault();
-		fetch("http://localhost:5001/forgot-password",{
+		fetch(URL,{
 			method: "POST",
 			crossDomain: true,
 			headers:{
@@ -29,12 +36,8 @@ function ResetComponent() {
 
 		}).then(res=>res.json())
 		.then(data =>{
-
 			console.log(data);
 			toast(data.status);
-
-
-
 		})
 
 	}

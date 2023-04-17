@@ -1,11 +1,12 @@
 import BlogGrid from './BlogsGrid';
 import React, { useEffect, useState } from 'react';
+const URL = process.env.REACT_APP_WEBSITE_URL
 function BlogList() {
   //fetch
   const [post, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5001/all-post')
+    fetch(`${URL}/all-post`)
       .then((res) => res.json())
       .then((data) => setPosts(data.posts));
   }, [post]);

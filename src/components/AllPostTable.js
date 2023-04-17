@@ -7,6 +7,7 @@ const AllPostTable = (props) => {
   const posttype = props.posts.posttype;
   const id = props.posts._id;
   const [image, setImage] = useState(null);
+	const URL = process.env.REACT_APP_WEBSITE_URL;
 
   useEffect(() => {
     const imgElement = new Image();
@@ -19,7 +20,7 @@ const AllPostTable = (props) => {
   async function handleDelete(id) {
     //e.preventDefault();
 
-    fetch(`http://localhost:5001/post-delete/${id}`)
+    fetch(`${URL}/post-delete/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.status);

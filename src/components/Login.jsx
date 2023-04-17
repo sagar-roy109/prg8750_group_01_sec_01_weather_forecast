@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Loginimg from '../assets/fall.jpg';
 import weather from '../assets/weather.json'
 import Lottie from 'lottie-react'
+const URL = process.env.REACT_APP_WEBSITE_URL;
 
 
 function Login() {
@@ -13,7 +14,7 @@ function Login() {
 
 	async function submit(e){
 		e.preventDefault();
-		fetch("http://localhost:5001/login",{
+		fetch(`${URL}/login`,{
 			method: "POST",
 			crossDomain: true,
 			headers:{

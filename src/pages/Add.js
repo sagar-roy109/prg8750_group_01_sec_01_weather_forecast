@@ -8,11 +8,12 @@ function Add() {
   const [title, setTitle] = useState('');
   const [img, setImg] = useState('');
   const [posttype, setPosttype] = useState('');
+	const URL = process.env.REACT_APP_WEBSITE_URL
 
   const addPost = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:5001/add-post', {
+    fetch(`${URL}/add-post`, {
       method: 'POST',
       crossDomain: true,
       headers: {
