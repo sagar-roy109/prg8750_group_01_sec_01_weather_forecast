@@ -6,6 +6,9 @@ const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const cron = require('node-cron');
 const Nodefetch = require('node-fetch');
+const dotenv = require('dotenv').config();
+const PORT = process.env.PORT;
+const URL = process.env.URL;
 
 app.use(cors());
 app.use(express.json());
@@ -29,8 +32,8 @@ mongoose
     useNewUrlParser: true,
   })
   .then(() => {
-    app.listen(5001, () => {
-      console.log('Server started at 5001 & Connected to DB');
+    app.listen(PORT, () => {
+      console.log(`Server started at ${PORT} & Connected to DB`);
     });
   })
   .catch((e) => {
@@ -118,7 +121,8 @@ app.post('/forgot-password', async (req, res) => {
     const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
       expiresIn: '5m',
     });
-    const link = `http://localhost:5001/reset-password/${oldUser._id}/${token}`;
+    //const link = `http://localhost:5001/reset-password/${oldUser._id}/${token}`;
+    const link = `To reset your account password please visit this url \n ${URL}/reset-password/${oldUser._id}/${token}`;
 
     // sent email
     var transporter = nodemailer.createTransport({
@@ -352,26 +356,3 @@ cron.schedule('*/10 * * * * *', function () {
 });
 
 
-/** GET CITY LIST */
-
-// app.post('/get-user-city', async (req,res)=>{
-// 	const { token } = req.body;
-
-//   try {
-//     const user = jwt.verify(token, JWT_SECRET_KEY, (err, res) => {
-//       if (err) {
-//         return 'Token Expired';
-//       }
-//       return res;
-//     });
-
-//     const userEmail = user.email;
-//     User.findOne({
-//       email: userEmail,
-//     }).then((data) => {
-//       res.send({ data: data, status: 'ok' });
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// })

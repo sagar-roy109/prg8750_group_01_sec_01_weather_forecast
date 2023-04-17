@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import registerimg from '../assets/loginfinal.jpg';
 import weather from '../assets/weather.json'
 import Lottie from 'lottie-react'
+const URL = process.env.REACT_APP_WEBSITE_URL
 
 function Login() {
 
@@ -15,7 +16,7 @@ function Login() {
 	async function submit(e){
 		e.preventDefault();
 
-		fetch("http://localhost:5001/register",{
+		fetch(`${URL}/register`,{
 			method: "POST",
 			crossDomain: true,
 			headers:{

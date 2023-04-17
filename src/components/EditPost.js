@@ -11,9 +11,10 @@ function Add() {
   const parts = path.split('/');
   const id = parts[parts.length - 1];
   const [postDetails, setPostDetails] = useState({});
+	const URL = process.env.REACT_APP_WEBSITE_URL
 
   useEffect(() => {
-    fetch(`http://localhost:5001/post/${id}`)
+    fetch(`${URL}/post/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.posts);
@@ -27,7 +28,7 @@ function Add() {
   const editPost = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5001/edit/${id}`, {
+    fetch(`${URL}/edit/${id}`, {
       method: 'PUT',
       crossDomain: true,
       headers: {

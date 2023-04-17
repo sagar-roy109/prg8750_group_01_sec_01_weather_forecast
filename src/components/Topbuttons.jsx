@@ -1,4 +1,5 @@
 import React , {useEffect, useState} from 'react';
+const URL = process.env.REACT_APP_WEBSITE_URL
 
 
 function Topbuttons({setQuery}) {
@@ -6,7 +7,7 @@ function Topbuttons({setQuery}) {
 
 
 	useEffect(() => {
-		fetch('http://localhost:5001/user-details', {
+		fetch(`${URL}/user-details`, {
       method: 'POST',
       crossDomain: true,
       headers: {
@@ -29,11 +30,11 @@ function Topbuttons({setQuery}) {
     <div className='flex items-center justify-around my-6'>
       {cities.map((city) => (
         <button key={city.id} className='text-white text-lg font-medium'
-        onClick={() => setQuery({q: city.title})}>
+        onClick={() => setQuery({q: city})}>
           {city}
         </button>
       ))}
-			{console.log(cities)}
+
     </div>
 
 

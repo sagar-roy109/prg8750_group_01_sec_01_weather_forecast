@@ -4,20 +4,50 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Header from '../components/Header';
+import { toast } from 'react-toastify';
 
 function UserDash() {
+
+
+
   const history = useNavigate();
   const [userData, setUserData] = useState({});
   const [city, setCity] = useState('');
+	const [cities, setCities] = useState([]);
+	const [cityUpdate, setCityUpdate] =  useState(0);
   const logout = () => {
     window.localStorage.clear();
     window.location.href = '/login';
   };
+	const URL = process.env.REACT_APP_WEBSITE_URL
 
-  const addCity = (e) => {
+	useEffect( () =>  {
+		fetch(`${URL}/user-details`, {
+		 method: 'POST',
+		 crossDomain: true,
+		 headers: {
+			 'Content-Type': 'application/json',
+			 Accept: 'application/json',
+			 'Access-Control-Allow-Origin': '*',
+		 },
+		 body: JSON.stringify({
+			 token: window.localStorage.getItem('token'),
+		 }),
+	 })
+		 .then((res) => res.json())
+		 .then((data) => {
+			 setCities(data.data.cities)
+
+		 });
+ }, [cityUpdate]);
+
+
+
+
+  const addCity = async (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:5001/add-city', {
+ await fetch(`${URL}/add-city`, {
       method: 'POST',
       crossDomain: true,
       headers: {
@@ -32,11 +62,14 @@ function UserDash() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.status);
+				toast("Data added");
+        setCityUpdate(cityUpdate => cityUpdate +1);
+
       });
   };
-  useEffect(() => {
-    fetch('http://localhost:5001/user-details', {
+
+	useEffect(() => {
+    fetch(`${URL}/user-details`, {
       method: 'POST',
       crossDomain: true,
       headers: {
@@ -100,6 +133,25 @@ function UserDash() {
               Submit
             </Button>
           </Form>
+					<Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>City </th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+								{
+									cities.map(city=>{
+										return(
+											<tr>
+											<td>{city}</td>
+											</tr>
+										)
+									})
+								}
+            </tbody>
+          </Table>
         </div>
       </div>
     </>
