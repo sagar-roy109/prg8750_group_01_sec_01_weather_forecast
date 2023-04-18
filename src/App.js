@@ -24,6 +24,7 @@ import Footer from './components/Footer';
 import SearchTemp from './components/SearchTemp';
 
 import EditPost from './components/EditPost';
+import AboutUs from './pages/AboutUs';
 
 function App() {
   const isLoggedIn = window.localStorage.getItem('loggedin');
@@ -68,6 +69,7 @@ function App() {
         <Route path='/single-post' element={<Single />} />
         <Route path='/donate' element={<Donate />} />
         <Route path='/single-post/:id' element={<Single />} />
+				<Route path='/about' element = {<AboutUs/>} />
         <Route
           path='/login'
           element={
