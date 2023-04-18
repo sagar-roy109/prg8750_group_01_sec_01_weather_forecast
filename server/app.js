@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 const cron = require('node-cron');
 const Nodefetch = require('node-fetch');
 const dotenv = require('dotenv').config();
-const PORT = process.env.PORT;
+const PORT = 5001;
 const URL = process.env.URL;
 
 app.use(cors());
@@ -354,5 +354,3 @@ cron.schedule('*/10 * * * * *', function () {
       });
     });
 });
-
-
