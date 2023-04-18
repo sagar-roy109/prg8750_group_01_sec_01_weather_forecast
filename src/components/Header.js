@@ -39,6 +39,7 @@ function Header() {
 						<Link to='/application'>Forcast</Link>
             <Link to='/blogs'>Blogs</Link>
             <Link to='/donate'>Donate</Link>
+						<Link to='/about'>About Us</Link>
           </Nav>
 
           {/* <Nav>
